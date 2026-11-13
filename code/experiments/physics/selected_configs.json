@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "decision_basis": "Uniform single-FET validation and independently generated supplemental single-FET rail validation only. No gate/circuit currents or new test labels were used.",
+  "selection_status": "Development selection; freeze only after collecting full15000-row validation outputs.",
+  "validation_selected": true,
+  "training_rows_per_case": 70000,
+  "validation_rows_per_case": 15000,
+  "family": "local_quintic_rbf",
+  "shared_parameters": {
+    "method": "rbf",
+    "degree": 2,
+    "regularization": 1e-12,
+    "kernel": "quintic",
+    "physics_normalized": true,
+    "baseline_kind": "gate",
+    "jobs": 1
+  },
+  "cases": {
+    "nmos_on": {"style": "raw", "neighbors": 256, "gate_correction": {"family": "local_quintic_rbf", "neighbors": 256, "style": "raw", "degree": 2, "regularization": 1e-12}},
+    "nmos_off": {"style": "junction", "neighbors": 512},
+    "pmos_on": {"style": "raw", "neighbors": 256, "gate_correction": {"family": "local_quintic_rbf", "neighbors": 256, "style": "raw", "degree": 2, "regularization": 1e-12}},
+    "pmos_off": {"style": "junction", "neighbors": 256}
+  }
+}

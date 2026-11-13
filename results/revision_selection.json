@@ -1,0 +1,268 @@
+{
+  "selection_criterion": "Minimize the predeclared independent single-FET boundary-validation nonzero-bias power/VDD MAPE; use uniform-validation smooth-component log RMSE only to break ties. The complete uniform-validation raw-current statistics are reported separately. No final-test or gate/circuit leakage is used for selection.",
+  "comparison_csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/transistor_validation_models.csv",
+  "cases": {
+    "nmos_on": {
+      "model_path": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/physics_selected/models/nmos_on.joblib",
+      "family": "local_quintic_rbf",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9999989773111029,
+          "mae_A": 2.9775535215298e-08,
+          "rmse_A": 7.951787944143386e-08,
+          "median_relative_error_pct": 0.06838167689623466,
+          "p95_relative_error_pct": 1.3765939174387811,
+          "mape_pct": 0.3196971848040576,
+          "mean_accuracy_pct": 99.68030281519594,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.2578184481837646,
+          "median_pct": 0.07146091447735246,
+          "p95_pct": 1.102563297279354,
+          "terminal_mape_pct": 0.2578184481837646,
+          "terminal_median_pct": 0.07146091447735246,
+          "terminal_p95_pct": 1.102563297279354,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 0.16926365646749683,
+          "median_pct": 0.11362916179190824,
+          "p95_pct": 0.4441664509803679,
+          "terminal_mape_pct": 0.16926365646749683,
+          "terminal_median_pct": 0.11362916179190824,
+          "terminal_p95_pct": 0.4441664509803679,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "raw",
+          "neighbors": 256,
+          "gate_correction": {
+            "family": "local_quintic_rbf",
+            "neighbors": 256,
+            "style": "raw",
+            "degree": 2,
+            "regularization": 1e-12
+          }
+        }
+      }
+    },
+    "nmos_off": {
+      "model_path": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/physics_selected/models/nmos_off.joblib",
+      "family": "local_quintic_rbf",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9142153059857121,
+          "mae_A": 6.075211985878553e-12,
+          "rmse_A": 5.299190701693492e-11,
+          "median_relative_error_pct": 0.0034512846628625446,
+          "p95_relative_error_pct": 5.1828811608419665,
+          "mape_pct": 13.020230180450291,
+          "mean_accuracy_pct": 86.97976981954972,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.09515665919238954,
+          "median_pct": 0.00345390347387034,
+          "p95_pct": 0.46980303397482603,
+          "terminal_mape_pct": 0.09515665919238954,
+          "terminal_median_pct": 0.00345390347387034,
+          "terminal_p95_pct": 0.46980303397482603,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 1.228036537629206,
+          "median_pct": 0.2164368000807385,
+          "p95_pct": 5.521478895342416,
+          "terminal_mape_pct": 1.228036537629206,
+          "terminal_median_pct": 0.2164368000807385,
+          "terminal_p95_pct": 5.521478895342416,
+          "floor_reference_count": 1
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "junction",
+          "neighbors": 512
+        }
+      }
+    },
+    "pmos_on": {
+      "model_path": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/physics_selected/models/pmos_on.joblib",
+      "family": "local_quintic_rbf",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9999990149868478,
+          "mae_A": 6.771826283537821e-09,
+          "rmse_A": 1.8546125819439565e-08,
+          "median_relative_error_pct": 0.0361368635963942,
+          "p95_relative_error_pct": 1.0775841945790714,
+          "mape_pct": 0.28848457067020167,
+          "mean_accuracy_pct": 99.7115154293298,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.16924070444315154,
+          "median_pct": 0.03021231548155123,
+          "p95_pct": 0.7988208746995437,
+          "terminal_mape_pct": 0.16924070444315154,
+          "terminal_median_pct": 0.03021231548155123,
+          "terminal_p95_pct": 0.7988208746995437,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 0.3155437474530926,
+          "median_pct": 0.19036737396167322,
+          "p95_pct": 1.053893941765167,
+          "terminal_mape_pct": 0.3155437474530926,
+          "terminal_median_pct": 0.19036737396167322,
+          "terminal_p95_pct": 1.053893941765167,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "raw",
+          "neighbors": 256,
+          "gate_correction": {
+            "family": "local_quintic_rbf",
+            "neighbors": 256,
+            "style": "raw",
+            "degree": 2,
+            "regularization": 1e-12
+          }
+        }
+      }
+    },
+    "pmos_off": {
+      "model_path": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/physics_selected/models/pmos_off.joblib",
+      "family": "local_quintic_rbf",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9585431851855593,
+          "mae_A": 7.0748455425894046e-12,
+          "rmse_A": 4.757122141576476e-11,
+          "median_relative_error_pct": 0.016182157929599074,
+          "p95_relative_error_pct": 5.203577452664069,
+          "mape_pct": 3.1314605256471943,
+          "mean_accuracy_pct": 96.86853947435281,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.1309335581500127,
+          "median_pct": 0.004970695173623977,
+          "p95_pct": 0.6597016420762557,
+          "terminal_mape_pct": 0.1309335581500127,
+          "terminal_median_pct": 0.004970695173623977,
+          "terminal_p95_pct": 0.6597016420762557,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 1.2019027913203184,
+          "median_pct": 0.19604028277492727,
+          "p95_pct": 6.1995002844846745,
+          "terminal_mape_pct": 1.2019027913203184,
+          "terminal_median_pct": 0.19604028277492727,
+          "terminal_p95_pct": 6.1995002844846745,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "junction",
+          "neighbors": 256
+        }
+      }
+    }
+  },
+  "validation_evidence": {
+    "improvements_99/physics_selected/manifest.json": "3ac56d87481d2f2137fb0256510b9a2806ace29de6f3909af5d70ee1e9f8cdfd",
+    "experiments/physics/boundary_validation/protocol.json": "9851e8badd071ee029efcbdf0ee2d8dc9d3ed9590c8f1b9c6dc8cafd0dff1537",
+    "experiments/physics/boundary_validation/nmos_on.csv": "238842ad3bf073c3f69b57f3b9bd9f8551cd1e7f649c495d938caceafe529cb7",
+    "experiments/physics/boundary_validation/nmos_off.csv": "29a8f6879b037ffe757e5b358d5792123a2d0c3498083ffb91e00b7cdf516573",
+    "experiments/physics/boundary_validation/pmos_on.csv": "1c80a3ab3bc7b21a68005d0bce1052319f5184227f236cfae1bb4509379beb64",
+    "experiments/physics/boundary_validation/pmos_off.csv": "4cf25e1404dc71bee45e4e12b41ad7b5e3a7f6ce393749d93fa583451b73801a",
+    "improvements_99/results/tree_comparison/nmos_on_random_forest.json": "ad8e824131a43195ae02aad133dbf7ba7ef41d1179f326e203e9b8095daea6f4",
+    "improvements_99/results/tree_comparison/nmos_on_extra_trees.json": "2cfa17958d007e7cc88ebded1ab4a5a23361d42f9be7694d80136f890f7bc354",
+    "improvements_99/results/tree_comparison/nmos_on_hist_gradient_boosting.json": "b87462498da299bcabddf515aa127feb85a80ff4bc4c7b5fb46369ed47f2fd0b",
+    "improvements_99/physics_selected/models/nmos_on.joblib": "9c2c105207e4c93379ddb38b02ae4811c3347035c39e89bd7657682c2a28da3e",
+    "improvements_99/physics_selected/metrics/nmos_on.json": "268e7fc55ff00dc129c3b4afc42ab82a60aed19305d7e721578cf0a8f688bd65",
+    "improvements_99/physics_selected/validation_predictions/nmos_on.csv": "25a8b278150c43ece3674265278391cc62ede0c15da98329a37ff231974fe24d",
+    "improvements_99/physics_selected/boundary_predictions/nmos_on.csv": "dd43100e93c7a40b8889c0b9cb313411e8adc1a45754391285d7851dfc21d876",
+    "improvements_99/results/tree_comparison/nmos_off_random_forest.json": "45653c56a74f3b42f7c3dc346c7b960fab2fcfbfa526ed8b76dce83d74f4f601",
+    "improvements_99/results/tree_comparison/nmos_off_extra_trees.json": "0044f351b67a51a0191dee7e3c9ed06a3aef81b5175d4001dddbaf9bf805e58b",
+    "improvements_99/results/tree_comparison/nmos_off_hist_gradient_boosting.json": "32757acc1432ddac8e2d54e94e15d853d93a13f2e76ff6b25446cc651c6ffe4d",
+    "improvements_99/physics_selected/models/nmos_off.joblib": "ab1fb04c59b974a70100e41a942368b0225f4bf96e2493f0160de04a6002d33b",
+    "improvements_99/physics_selected/metrics/nmos_off.json": "c99d23a7c60a4c6391a543a1b0ca76aa47c8fcd5e391c63a0e447e30b3bf050d",
+    "improvements_99/physics_selected/validation_predictions/nmos_off.csv": "7b7e47544798c07852eee17cd02a39c614f10c8780741a532cc0e5adfaef1021",
+    "improvements_99/physics_selected/boundary_predictions/nmos_off.csv": "814b94c7832867934ff3a34006cc29d8cc0855fa377e20dd2feef0a27eaeaa54",
+    "improvements_99/results/tree_comparison/pmos_on_random_forest.json": "cdd249a10fd8d4962d43efeeed18d59bb3097b0a47e6c9413ee457db0295b80a",
+    "improvements_99/results/tree_comparison/pmos_on_extra_trees.json": "5e568d844dc80103cb32d5e83fb9ca4c09c27f83843f08b8c40994f1225f709b",
+    "improvements_99/results/tree_comparison/pmos_on_hist_gradient_boosting.json": "d006a0381213107f75a93066df01a1c66725bd5e2b9efc18cc95025e93015f49",
+    "improvements_99/physics_selected/models/pmos_on.joblib": "05c3c347f6236114bc8d2028c2c04fa58b295c92c5eecb35a1670220617fa3d5",
+    "improvements_99/physics_selected/metrics/pmos_on.json": "505af8e0e57750587bdef729900a3639028f8172d0047ad2fa43ad78b074336b",
+    "improvements_99/physics_selected/validation_predictions/pmos_on.csv": "f2ac48b1c78be9c2fe74ac69d01d6710ad22b3f2d48bb7e5368351c7030f69b7",
+    "improvements_99/physics_selected/boundary_predictions/pmos_on.csv": "395734f6fdc25c9dfa75067a1356cb18d0d9f38b4a5a27d29972e83966dc4af8",
+    "improvements_99/results/tree_comparison/pmos_off_random_forest.json": "5bbdb6c93f996bf9a854df2a6b33e06f9d3693907bb2b4c21e2b18440038d894",
+    "improvements_99/results/tree_comparison/pmos_off_extra_trees.json": "9bf25d3e765543384dc3a6d30bd160f2a9225decd1065c118d1a82c05c8db83c",
+    "improvements_99/results/tree_comparison/pmos_off_hist_gradient_boosting.json": "abebefa81f57fbb1ba729bcc5b2ceefa9618c57d05dfd1189adae01d47eaf78c",
+    "improvements_99/physics_selected/models/pmos_off.joblib": "85c77c0c7a45cc008899c72523e9bec4221f57d53bb147506a0e9ade6bb099d1",
+    "improvements_99/physics_selected/metrics/pmos_off.json": "83741ade8f7ae6a78ee91a33859367b9997c44d18f6afce683fbe445a7bb3d0b",
+    "improvements_99/physics_selected/validation_predictions/pmos_off.csv": "774687beefdeea202a6a5358963cfaf823ed8f205ba436e9fee2c12592f372b4",
+    "improvements_99/physics_selected/boundary_predictions/pmos_off.csv": "b1a360b90b6d92a9ac073413a73b5b36b2d2ee6f90d42502cb50fb42ccbd5d07"
+  },
+  "preprocessing": {
+    "features": "Canonical drain/source polarity, voltage coordinates and smooth temperature/geometry/process functions of the original12 inputs.",
+    "targets": "Positive conductance and gate/body magnitudes in logarithms; physical baselines normalize selected targets. Every fitted residual uses70000 uniform training rows only.",
+    "validation": "15000 uniform rows plus512 independent boundary single-FET rows per case; test15000 rows remain untouched until allfour model files and sources are frozen."
+  },
+  "representation_description": "Canonical PMOS polarity and ordered drain/source; log positive Gd/Gs and |Ig|/|Ib|, with width normalization; OFF log residuals relative to fixed BSIM gate-edge and diode-shaped body baselines. ON uses a separately learned gate-edge residual with compensating half gate-current changes in Id/Is; learned channel difference and KCL residual preserved. All four currents reconstructed from learned residuals; no SPICE at inference. Exact all-terminal-equal zero invariant.",
+  "hyperparameter_table": [
+    [
+      "Random forest",
+      "128 trees; all features; unrestricted depth; minimum leaf size2; seed20261024."
+    ],
+    [
+      "Extra trees",
+      "128 trees; all features; unrestricted depth; minimum leaf size2; seed20261024."
+    ],
+    [
+      "Histogram gradient boosting",
+      "Four target regressors;400 iterations; rate0.08;63 leaves; minimum leaf15; L2=0.01; seed20261024."
+    ],
+    [
+      "local_quintic_rbf",
+      "Local quintic RBF, degree2 polynomial, smoothing1e-12.512 neighbors for NMOS OFF;256 for other cases. ON cases additionally learn a gate-edge log residual using256 neighbors."
+    ]
+  ]
+}

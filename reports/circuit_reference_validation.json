@@ -1,0 +1,443 @@
+{
+  "status": "PASSED",
+  "model_sha256": "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e",
+  "corner_sha256": "efb20e398046afb957fbc70de700467e55f098446c6499f267828abe7cd0a9c3",
+  "gate_reference_sha256": "856835f3c0ec906d406f68af7a7c393565559a88a61d33c6d9f40f5be147fb3e",
+  "circuit_reference_sha256": "5f54adfe96c5d08916c8314d09be67ac65b8d65d9886ac166201a9908136c424",
+  "completeness": {
+    "corners": 200,
+    "gate_rows": 3600,
+    "circuit_rows": 51200,
+    "no_missing_or_duplicate_keys": true,
+    "corner_vdd_temperature_match": true,
+    "all_corner_parameters_within_assigned_bounds": true
+  },
+  "topology": {
+    "boolean_vectors_checked": 256,
+    "nand2_cells": 28,
+    "fets": 112,
+    "parity_integer_bit_order": "a0=LSB; displayed input_bits=a7...a0",
+    "gate_bit_order": "a=MSB,b=LSB"
+  },
+  "instrumented_gates": [
+    {
+      "gate": "INV",
+      "vector": 0,
+      "corner_id": 0,
+      "terminal_probe_count": 8,
+      "external_power_W": 3.725859823694237e-08,
+      "terminal_power_sum_W": 3.725859823694238e-08,
+      "source_relative_power_W": 3.7258598236946145e-08,
+      "power_conservation_abs_error_W": 6.617444900424222e-24,
+      "max_terminal_KCL_abs_A": 4.145829230115775e-21,
+      "reference_leakage_abs_error_A": 8.72782748850831e-18
+    },
+    {
+      "gate": "INV",
+      "vector": 1,
+      "corner_id": 0,
+      "terminal_probe_count": 8,
+      "external_power_W": 3.415263389031961e-08,
+      "terminal_power_sum_W": 3.4152633890319613e-08,
+      "source_relative_power_W": 3.415263442648746e-08,
+      "power_conservation_abs_error_W": 6.617444900424222e-24,
+      "max_terminal_KCL_abs_A": 5.904541804124457e-16,
+      "reference_leakage_abs_error_A": 4.430325362483629e-16
+    },
+    {
+      "gate": "NAND2",
+      "vector": 0,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 3.0802541513543804e-08,
+      "terminal_power_sum_W": 3.0802541513543804e-08,
+      "source_relative_power_W": 3.0802541495255245e-08,
+      "power_conservation_abs_error_W": 0.0,
+      "max_terminal_KCL_abs_A": 1.0094723598417488e-17,
+      "reference_leakage_abs_error_A": 1.43402148574561e-17
+    },
+    {
+      "gate": "NAND2",
+      "vector": 1,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 4.491980454620646e-08,
+      "terminal_power_sum_W": 4.491980454620646e-08,
+      "source_relative_power_W": 4.491980506013003e-08,
+      "power_conservation_abs_error_W": 0.0,
+      "max_terminal_KCL_abs_A": 5.763384987691834e-16,
+      "reference_leakage_abs_error_A": 4.329265265976677e-16
+    },
+    {
+      "gate": "NAND2",
+      "vector": 2,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 2.715015884808161e-08,
+      "terminal_power_sum_W": 2.715015884808162e-08,
+      "source_relative_power_W": 2.7150159141766203e-08,
+      "power_conservation_abs_error_W": 9.926167350636332e-24,
+      "max_terminal_KCL_abs_A": 2.7917315850039157e-16,
+      "reference_leakage_abs_error_A": 4.4375472448012577e-16
+    },
+    {
+      "gate": "NAND2",
+      "vector": 3,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 6.825495822683968e-08,
+      "terminal_power_sum_W": 6.825495822683968e-08,
+      "source_relative_power_W": 6.825495749535048e-08,
+      "power_conservation_abs_error_W": 0.0,
+      "max_terminal_KCL_abs_A": 4.027794130124704e-16,
+      "reference_leakage_abs_error_A": 2.4480391699661133e-16
+    },
+    {
+      "gate": "NOR2",
+      "vector": 0,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 7.443803134085207e-08,
+      "terminal_power_sum_W": 7.443803134085208e-08,
+      "source_relative_power_W": 7.443803132610426e-08,
+      "power_conservation_abs_error_W": 1.3234889800848443e-23,
+      "max_terminal_KCL_abs_A": 1.128091714043078e-17,
+      "reference_leakage_abs_error_A": 1.0055961914913253e-17
+    },
+    {
+      "gate": "NOR2",
+      "vector": 1,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 4.7623267578874265e-08,
+      "terminal_power_sum_W": 4.762326757887427e-08,
+      "source_relative_power_W": 4.7623267477344085e-08,
+      "power_conservation_abs_error_W": 6.617444900424222e-24,
+      "max_terminal_KCL_abs_A": 2.5236358360970697e-16,
+      "reference_leakage_abs_error_A": 1.1196506138246602e-15
+    },
+    {
+      "gate": "NOR2",
+      "vector": 2,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 2.480159953628061e-08,
+      "terminal_power_sum_W": 2.4801599536280614e-08,
+      "source_relative_power_W": 2.4801599553073188e-08,
+      "power_conservation_abs_error_W": 3.308722450212111e-24,
+      "max_terminal_KCL_abs_A": 4.736279346279678e-16,
+      "reference_leakage_abs_error_A": 2.4837802545711005e-16
+    },
+    {
+      "gate": "NOR2",
+      "vector": 3,
+      "corner_id": 0,
+      "terminal_probe_count": 16,
+      "external_power_W": 2.0146184565999227e-08,
+      "terminal_power_sum_W": 2.014618456599923e-08,
+      "source_relative_power_W": 2.014618372475488e-08,
+      "power_conservation_abs_error_W": 3.308722450212111e-24,
+      "max_terminal_KCL_abs_A": 9.090265475100137e-16,
+      "reference_leakage_abs_error_A": 4.407147364673199e-16
+    },
+    {
+      "gate": "AND2",
+      "vector": 0,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 6.499115324339143e-08,
+      "terminal_power_sum_W": 6.499115324337869e-08,
+      "source_relative_power_W": 6.499115361212529e-08,
+      "power_conservation_abs_error_W": 1.2731963988416202e-20,
+      "max_terminal_KCL_abs_A": 4.158302683619156e-16,
+      "reference_leakage_abs_error_A": 9.8005536880475e-17
+    },
+    {
+      "gate": "AND2",
+      "vector": 1,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 7.917657585714962e-08,
+      "terminal_power_sum_W": 7.917657585713338e-08,
+      "source_relative_power_W": 7.917657667052018e-08,
+      "power_conservation_abs_error_W": 1.623920978564104e-20,
+      "max_terminal_KCL_abs_A": 1.035745402806556e-15,
+      "reference_leakage_abs_error_A": 8.99510039703383e-16
+    },
+    {
+      "gate": "AND2",
+      "vector": 2,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 6.138386509683282e-08,
+      "terminal_power_sum_W": 6.138386509683284e-08,
+      "source_relative_power_W": 6.138386560241019e-08,
+      "power_conservation_abs_error_W": 1.3234889800848443e-23,
+      "max_terminal_KCL_abs_A": 5.577389291056223e-16,
+      "reference_leakage_abs_error_A": 5.945509809932942e-16
+    },
+    {
+      "gate": "AND2",
+      "vector": 3,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 1.0571779351896356e-07,
+      "terminal_power_sum_W": 1.0571779351896356e-07,
+      "source_relative_power_W": 1.0571779320489396e-07,
+      "power_conservation_abs_error_W": 0.0,
+      "max_terminal_KCL_abs_A": 6.129478219236084e-16,
+      "reference_leakage_abs_error_A": 2.84607383528031e-15
+    },
+    {
+      "gate": "OR2",
+      "vector": 0,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 1.0895087786546004e-07,
+      "terminal_power_sum_W": 1.0895087818426653e-07,
+      "source_relative_power_W": 1.0895087763248539e-07,
+      "power_conservation_abs_error_W": 3.188064856807002e-16,
+      "max_terminal_KCL_abs_A": 6.143474512247175e-16,
+      "reference_leakage_abs_error_A": 3.765468820453435e-16
+    },
+    {
+      "gate": "OR2",
+      "vector": 1,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 8.494441157643356e-08,
+      "terminal_power_sum_W": 8.494441157643357e-08,
+      "source_relative_power_W": 8.494441099069077e-08,
+      "power_conservation_abs_error_W": 1.3234889800848443e-23,
+      "max_terminal_KCL_abs_A": 6.02394903131563e-16,
+      "reference_leakage_abs_error_A": 1.1211408293290112e-15
+    },
+    {
+      "gate": "OR2",
+      "vector": 2,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 6.211291842254836e-08,
+      "terminal_power_sum_W": 6.211291842254837e-08,
+      "source_relative_power_W": 6.211291950021535e-08,
+      "power_conservation_abs_error_W": 1.3234889800848443e-23,
+      "max_terminal_KCL_abs_A": 1.2042792406105563e-15,
+      "reference_leakage_abs_error_A": 1.3396475099822593e-15
+    },
+    {
+      "gate": "OR2",
+      "vector": 3,
+      "corner_id": 0,
+      "terminal_probe_count": 24,
+      "external_power_W": 5.7424767575932715e-08,
+      "terminal_power_sum_W": 5.7424767575932715e-08,
+      "source_relative_power_W": 5.7424768721950016e-08,
+      "power_conservation_abs_error_W": 0.0,
+      "max_terminal_KCL_abs_A": 1.3942510008904464e-15,
+      "reference_leakage_abs_error_A": 6.714227679070886e-16
+    }
+  ],
+  "reverse_order": {
+    "corner_id": 0,
+    "vectors": 256,
+    "max_leakage_difference_A": 0.0,
+    "max_output_difference_V": 0.0
+  },
+  "fresh_vectors": [
+    {
+      "condition": "fresh_actual",
+      "vector": 0,
+      "expected_output": 0,
+      "output_V": 0.0003649921211332619,
+      "leakage_A": 1.4590910215055788e-06,
+      "reference_difference_A": 1.6279240562728278e-15,
+      "output_reference_difference_V": 8.947324218328001e-15
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 1,
+      "expected_output": 1,
+      "output_V": 0.9079267104016621,
+      "leakage_A": 1.4474046023475718e-06,
+      "reference_difference_A": 5.409138848638806e-15,
+      "output_reference_difference_V": 6.661338147750939e-16
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 2,
+      "expected_output": 1,
+      "output_V": 0.907926710401665,
+      "leakage_A": 1.4472792818290693e-06,
+      "reference_difference_A": 6.1482936797307985e-15,
+      "output_reference_difference_V": 2.220446049250313e-16
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 3,
+      "expected_output": 0,
+      "output_V": 0.000364992121119151,
+      "leakage_A": 1.4613937075542613e-06,
+      "reference_difference_A": 5.436731793928562e-16,
+      "output_reference_difference_V": 6.448942942161029e-15
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 85,
+      "expected_output": 0,
+      "output_V": 0.00036499211526667177,
+      "leakage_A": 1.4475136413741319e-06,
+      "reference_difference_A": 1.3251010531900587e-14,
+      "output_reference_difference_V": 7.540192428767689e-15
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 127,
+      "expected_output": 1,
+      "output_V": 0.9079712143567403,
+      "leakage_A": 1.454438734051726e-06,
+      "reference_difference_A": 9.44773815455516e-15,
+      "output_reference_difference_V": 3.3306690738754696e-16
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 128,
+      "expected_output": 1,
+      "output_V": 0.907971214356741,
+      "leakage_A": 1.4474083412091684e-06,
+      "reference_difference_A": 7.759607843424443e-15,
+      "output_reference_difference_V": 3.3306690738754696e-16
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 170,
+      "expected_output": 0,
+      "output_V": 0.00036499211526843696,
+      "leakage_A": 1.4470124072909983e-06,
+      "reference_difference_A": 1.3491491444197318e-14,
+      "output_reference_difference_V": 7.231791120804187e-15
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 254,
+      "expected_output": 1,
+      "output_V": 0.9079267104016652,
+      "leakage_A": 1.4541872183635775e-06,
+      "reference_difference_A": 1.3438631717849203e-14,
+      "output_reference_difference_V": 0.0
+    },
+    {
+      "condition": "fresh_actual",
+      "vector": 255,
+      "expected_output": 0,
+      "output_V": 0.0003649921211172408,
+      "leakage_A": 1.4683017329360154e-06,
+      "reference_difference_A": 1.0955805778242083e-14,
+      "output_reference_difference_V": 1.257316733366265e-14
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 0,
+      "expected_output": 0,
+      "output_V": 0.0007207595113944283,
+      "leakage_A": 2.7275289760222696e-06,
+      "reference_difference_A": 1.363911086393714e-14,
+      "output_reference_difference_V": 5.0875536422578804e-14
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 1,
+      "expected_output": 1,
+      "output_V": 0.8998284359221859,
+      "leakage_A": 2.6155852881987944e-06,
+      "reference_difference_A": 1.4898889413861305e-14,
+      "output_reference_difference_V": 1.1102230246251565e-16
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 2,
+      "expected_output": 1,
+      "output_V": 0.8998284359221876,
+      "leakage_A": 2.615458287630665e-06,
+      "reference_difference_A": 7.085721983116078e-15,
+      "output_reference_difference_V": 0.0
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 3,
+      "expected_output": 0,
+      "output_V": 0.0007207595113208824,
+      "leakage_A": 2.724800610602238e-06,
+      "reference_difference_A": 6.245871875254494e-15,
+      "output_reference_difference_V": 4.191319600416188e-14
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 85,
+      "expected_output": 0,
+      "output_V": 0.0007207595041168301,
+      "leakage_A": 2.572897688455376e-06,
+      "reference_difference_A": 9.97878503731977e-15,
+      "output_reference_difference_V": 1.8740434551411944e-15
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 127,
+      "expected_output": 1,
+      "output_V": 0.8998649056775276,
+      "leakage_A": 2.6076766518547568e-06,
+      "reference_difference_A": 1.1463649040449608e-14,
+      "output_reference_difference_V": 4.440892098500626e-16
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 128,
+      "expected_output": 1,
+      "output_V": 0.8998649056775283,
+      "leakage_A": 2.6157420007627e-06,
+      "reference_difference_A": 1.8573033735980182e-14,
+      "output_reference_difference_V": 1.1102230246251565e-16
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 170,
+      "expected_output": 0,
+      "output_V": 0.0007207595041583551,
+      "leakage_A": 2.5723899439681957e-06,
+      "reference_difference_A": 8.269153218339476e-15,
+      "output_reference_difference_V": 3.152274448414705e-14
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 254,
+      "expected_output": 1,
+      "output_V": 0.8998284359221878,
+      "leakage_A": 2.607273066474445e-06,
+      "reference_difference_A": 4.062939221172179e-15,
+      "output_reference_difference_V": 0.0
+    },
+    {
+      "condition": "fresh_nominal",
+      "vector": 255,
+      "expected_output": 0,
+      "output_V": 0.0007207595113778501,
+      "leakage_A": 2.7166154583927653e-06,
+      "reference_difference_A": 7.922947982907068e-15,
+      "output_reference_difference_V": 4.101721132881986e-14
+    }
+  ],
+  "review_findings": [
+    "Standard CMOS pull-up/pull-down topologies, complemented composite gates and all fixed W/L values verified.",
+    "Every source/drain/body terminal keeps the model/simulator default junction geometry; no fabricated layout areas.",
+    "Source-current convention includes the main VDD supply and all input drivers at VDD; grounded drivers contribute zero power.",
+    "All four measured terminal currents are positive into each device, so sum(Vterminal*Iterminal) equals external supplied DC power.",
+    "VDD and temperature columns agree exactly with the shared corner table; independent derived model agrees in all ten varied process values.",
+    "Within one corner, only input sources change between operating points. Reversed vector order and independently fresh decks agree within stated tolerance.",
+    "Printed eight-bit input strings run a7 through a0, whereas actual parity netlist inputs a0 through a7 use LSB first; this is explicit in metadata."
+  ],
+  "tolerances": {
+    "current_abs_A": 2e-14,
+    "power_abs_W": 2e-14,
+    "relative": 2e-06,
+    "output_abs_V": 2e-09
+  }
+}

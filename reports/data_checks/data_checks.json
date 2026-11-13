@@ -1,0 +1,426 @@
+{
+  "abstol_A": 1e-18,
+  "all_trend_points_kcl": {
+    "above_abstol_count": 154,
+    "above_mixed_tolerance_count": 0,
+    "absolute_residual_A": {
+      "max": 7.934923604376229e-15,
+      "median": 9.473216482092095e-18,
+      "p95": 4.380183256147176e-15
+    },
+    "all_currents_finite": true,
+    "max_mixed_tolerance_ratio": 0.5882508689107603,
+    "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+    "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+    "normalized_residual": {
+      "max": 5.882944817742651e-07,
+      "median": 2.341210813842235e-13,
+      "p95": 1.4663588576817868e-07
+    },
+    "rows": 246,
+    "worst_normalized_row_currents_A": {
+      "ib": 1.004057947895376e-14,
+      "id": -6.744002520959539e-09,
+      "ig": 1.6513617140390124e-09,
+      "is": 5.092638701264652e-09
+    },
+    "worst_normalized_row_index": 52
+  },
+  "illustrative_baseline": {
+    "gate_sizing_decision": false,
+    "l_m": 3.2e-08,
+    "temp_C": 27.0,
+    "vdd_V": 0.9,
+    "w_m": 3.2e-08
+  },
+  "references": {
+    "bsim4_oxide_manual": "https://ngspice.sourceforge.io/external-documents/models/BSIM480_Manual.pdf",
+    "ngspice_42_manual": "https://ngspice.sourceforge.io/docs/ngspice-42-manual.pdf"
+  },
+  "reltol": 1e-06,
+  "schema_version": 1,
+  "script_sha256": "259c64d010030be73b3a56f9f29699b9778d587359e994a99152dde3d4eb1928",
+  "simulator": {
+    "executable": "/home/error404/Downloads/dvd/project/lusr_parity/tools/local/usr/bin/ngspice",
+    "version": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******"
+  },
+  "software": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "python": "3.12.3"
+  },
+  "source_model": {
+    "model_names": {
+      "nmos": "nmos",
+      "pmos": "pmos"
+    },
+    "nominal_parameters": {
+      "nmos": {
+        "ndep": 8.7e+18,
+        "toxe": 7.5e-10,
+        "u0": 0.0238,
+        "vth0": 0.3558,
+        "xj": 1e-08
+      },
+      "pmos": {
+        "ndep": 3.5e+18,
+        "toxe": 7.7e-10,
+        "u0": 0.00306,
+        "vth0": -0.24123,
+        "xj": 1.008e-08
+      }
+    },
+    "parameter_units": "Unmodified BSIM model-card units; no unit conversion.",
+    "path": "/home/error404/Downloads/dvd/project/models/32nm_MGK.pm",
+    "sha256": "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e"
+  },
+  "status": "COMPLETE",
+  "transistor_datasets": {
+    "nmos_off": {
+      "above_abstol_count": 0,
+      "above_mixed_tolerance_count": 0,
+      "absolute_residual_A": {
+        "max": 3.3519803005930653e-22,
+        "median": 1.0269343932512818e-24,
+        "p95": 1.2723465753967321e-23
+      },
+      "all_currents_finite": true,
+      "csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/nmos_off.csv",
+      "max_mixed_tolerance_ratio": 7.500752683773604e-09,
+      "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+      "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+      "normalized_residual": {
+        "max": 7.517776293703235e-15,
+        "median": 9.749022412760402e-17,
+        "p95": 3.024429152314878e-16
+      },
+      "rows": 100000,
+      "sha256": "7f5f7f72b1f186f5580a78aeb162df30d2ec81281ad98aedd23b660b13a99e99",
+      "worst_normalized_row_currents_A": {
+        "ib": -9.400583030106443e-15,
+        "id": -1.7863031153038853e-10,
+        "ig": -4.1664697902401224e-11,
+        "is": 2.2030441001582317e-10
+      },
+      "worst_normalized_row_index": 5657
+    },
+    "nmos_on": {
+      "above_abstol_count": 99170,
+      "above_mixed_tolerance_count": 225,
+      "absolute_residual_A": {
+        "max": 1.1477094050885338e-15,
+        "median": 6.874377854747566e-17,
+        "p95": 3.180116528820381e-16
+      },
+      "all_currents_finite": true,
+      "csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/nmos_on.csv",
+      "max_mixed_tolerance_ratio": 78.5585570565598,
+      "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+      "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+      "normalized_residual": {
+        "max": 9.586930133546534e-05,
+        "median": 6.640415505198884e-13,
+        "p95": 8.346802917631285e-10
+      },
+      "rows": 100000,
+      "sha256": "4ac61688d602221457b142e9bc02d501b1dae4298e2041b2b070e89d4cd15324",
+      "worst_normalized_row_currents_A": {
+        "ib": -1.0283990631107776e-14,
+        "id": -2.0410890965504214e-12,
+        "ig": 2.26885177312397e-12,
+        "is": -2.1791375412076927e-13
+      },
+      "worst_normalized_row_index": 78556
+    },
+    "pmos_off": {
+      "above_abstol_count": 99796,
+      "above_mixed_tolerance_count": 4153,
+      "absolute_residual_A": {
+        "max": 8.110376819882032e-15,
+        "median": 3.1012625602579454e-16,
+        "p95": 1.6363554712738513e-15
+      },
+      "all_currents_finite": true,
+      "csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/pmos_off.csv",
+      "max_mixed_tolerance_ratio": 134.75785293690922,
+      "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+      "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+      "normalized_residual": {
+        "max": 0.0001424018143041872,
+        "median": 2.7672581089275236e-08,
+        "p95": 8.337808640793165e-07
+      },
+      "rows": 100000,
+      "sha256": "5134fb770f0fd1438a46ae9b46056e2df9b810ad4d108a85d4464f14eb042122",
+      "worst_normalized_row_currents_A": {
+        "ib": 9.47505962578532e-15,
+        "id": 9.869181370839053e-13,
+        "ig": 7.819522807039903e-12,
+        "is": -8.81340555637448e-12
+      },
+      "worst_normalized_row_index": 18246
+    },
+    "pmos_on": {
+      "above_abstol_count": 92576,
+      "above_mixed_tolerance_count": 1,
+      "absolute_residual_A": {
+        "max": 3.798773361846086e-17,
+        "median": 6.955834562852314e-18,
+        "p95": 1.8413013965650745e-17
+      },
+      "all_currents_finite": true,
+      "csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/pmos_on.csv",
+      "max_mixed_tolerance_ratio": 3.1642110955062788,
+      "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+      "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+      "normalized_residual": {
+        "max": 3.7945729835524908e-06,
+        "median": 1.4337157204347072e-13,
+        "p95": 1.984190097720949e-11
+      },
+      "rows": 100000,
+      "sha256": "ca8deb9e45b2c28cb4ced34b1e65e0c4da518cf04648919893fff559a58c878f",
+      "worst_normalized_row_currents_A": {
+        "ib": 1.0814266149239415e-14,
+        "id": 2.4990321905770955e-12,
+        "ig": -2.3894367948030025e-12,
+        "is": -1.203906144044945e-13
+      },
+      "worst_normalized_row_index": 14381
+    }
+  },
+  "trend_simulation": {
+    "csv_sha256": "4b9077e71005fa5eed6a08e46b72c8622ab1e41008a12898775ca6600cc04657",
+    "executable_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+    "fresh_process_count": 246,
+    "input_sha256": "bdbbfc96316ebe9d56c785edd730d8b7a7de890fba6ad3b471c5599e28831788",
+    "method": "Fresh ngspice process and embedded model per point; exactly one swept input.",
+    "model_sha256": "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e",
+    "points_per_polarity_per_sweep": 41,
+    "rows": 246,
+    "simulation_source_sha256": "32bfa3da35bee4f325349bcd12d95e80db3fda98cb9f85c6523ab8239f29abcc",
+    "warning_count": 81,
+    "warning_messages": {
+      "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.": 81
+    }
+  },
+  "trends": {
+    "gate_current_vs_toxe": {
+      "nmos": {
+        "decreasing_steps": 40,
+        "first_current_magnitude_A": 2.3310540164800386e-08,
+        "first_swept_value": 6.75e-10,
+        "increasing_steps": 0,
+        "kcl": {
+          "above_abstol_count": 41,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 8.971988688443715e-16,
+            "median": 2.89873421151439e-16,
+            "p95": 7.296602042288167e-16
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 8.986979526778924e-06,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 8.986979616798879e-12,
+            "median": 2.9418175847822213e-12,
+            "p95": 6.9200275542549954e-12
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": -2.872929098678165e-10,
+            "id": 4.990179803473886e-05,
+            "ig": 1.4798368752622082e-08,
+            "is": -4.991630911147881e-05
+          },
+          "worst_normalized_row_index": 7
+        },
+        "last_current_magnitude_A": 1.840141372611015e-09,
+        "last_over_first_current_ratio": 0.07894031453589752,
+        "last_swept_value": 8.25e-10
+      },
+      "pmos": {
+        "decreasing_steps": 40,
+        "first_current_magnitude_A": 2.166321603784512e-08,
+        "first_swept_value": 6.930000000000001e-10,
+        "increasing_steps": 0,
+        "kcl": {
+          "above_abstol_count": 31,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 1.060485249962384e-17,
+            "median": 3.4457300294304938e-18,
+            "p95": 9.005654295207721e-18
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 3.004720685144648e-07,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 3.0047207759659705e-13,
+            "median": 9.605097787272546e-14,
+            "p95": 2.373130245031659e-13
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": 1.3030557986792868e-09,
+            "id": -1.6522857047010664e-05,
+            "ig": -1.907714615521865e-08,
+            "is": 1.6540631137377143e-05
+          },
+          "worst_normalized_row_index": 2
+        },
+        "last_current_magnitude_A": 1.8354530207785448e-09,
+        "last_over_first_current_ratio": 0.08472670990180092,
+        "last_swept_value": 8.470000000000001e-10
+      }
+    },
+    "off_current_vs_temperature": {
+      "nmos": {
+        "decreasing_steps": 0,
+        "first_current_magnitude_A": 2.9217766490367275e-09,
+        "first_swept_value": -40.0,
+        "increasing_steps": 40,
+        "kcl": {
+          "above_abstol_count": 0,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 1.3151100150939488e-23,
+            "median": 2.0821983593308607e-24,
+            "p95": 1.0202809826044668e-23
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 4.4639537687326036e-10,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 4.464420827893785e-16,
+            "median": 1.287469031964448e-16,
+            "p95": 2.8495383471781955e-16
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": -1.0018622359064606e-14,
+            "id": 4.778788363173633e-09,
+            "ig": -2.487230821732071e-09,
+            "is": -2.2915475228191983e-09
+          },
+          "worst_normalized_row_index": 10
+        },
+        "last_current_magnitude_A": 4.681377127804811e-08,
+        "last_over_first_current_ratio": 16.02236478051189,
+        "last_swept_value": 125.0
+      },
+      "pmos": {
+        "decreasing_steps": 0,
+        "first_current_magnitude_A": 3.1705677895764236e-09,
+        "first_swept_value": -40.0,
+        "increasing_steps": 40,
+        "kcl": {
+          "above_abstol_count": 41,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 7.934923604376229e-15,
+            "median": 8.328096163261204e-16,
+            "p95": 4.380501554419706e-15
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 0.5882508689107603,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 5.882944817742651e-07,
+            "median": 4.678454178371246e-08,
+            "p95": 1.3240718057076867e-07
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": 1.004057947895376e-14,
+            "id": -6.744002520959539e-09,
+            "ig": 1.6513617140390124e-09,
+            "is": 5.092638701264652e-09
+          },
+          "worst_normalized_row_index": 11
+        },
+        "last_current_magnitude_A": 3.518397906898849e-08,
+        "last_over_first_current_ratio": 11.097059392535158,
+        "last_swept_value": 125.0
+      }
+    },
+    "off_current_vs_vth0": {
+      "nmos": {
+        "decreasing_steps": 40,
+        "first_current_magnitude_A": 1.6863812378710708e-08,
+        "first_swept_value": 0.32022,
+        "increasing_steps": 0,
+        "kcl": {
+          "above_abstol_count": 0,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 8.967373184656231e-24,
+            "median": 2.089866087329609e-24,
+            "p95": 5.21334190889048e-24
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 3.800458962851774e-10,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 3.800851164774959e-16,
+            "median": 1.181442275719032e-16,
+            "p95": 2.895500719873958e-16
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": -1.0019018112218422e-14,
+            "id": 4.845028463891996e-09,
+            "ig": -2.487230821765757e-09,
+            "is": -2.357787623108123e-09
+          },
+          "worst_normalized_row_index": 35
+        },
+        "last_current_magnitude_A": 4.297669803421517e-09,
+        "last_over_first_current_ratio": 0.2548456841732301,
+        "last_swept_value": 0.39138000000000006
+      },
+      "pmos": {
+        "decreasing_steps": 0,
+        "first_current_magnitude_A": 5.566253096125959e-09,
+        "first_swept_value": -0.265353,
+        "increasing_steps": 40,
+        "kcl": {
+          "above_abstol_count": 41,
+          "above_mixed_tolerance_count": 0,
+          "absolute_residual_A": {
+            "max": 4.389046707341738e-15,
+            "median": 8.341351203181775e-16,
+            "p95": 4.386707984854281e-15
+          },
+          "all_currents_finite": true,
+          "max_mixed_tolerance_ratio": 0.3938074543452674,
+          "mixed_tolerance_definition": "1e-18 A + 1e-6 * (abs(id)+abs(ig)+abs(is)+abs(ib))",
+          "normalization": "abs(id+ig+is+ib) / max(abs(id)+abs(ig)+abs(is)+abs(ib), 1e-18 A)",
+          "normalized_residual": {
+            "max": 3.9384282888649343e-07,
+            "median": 5.3780079893016504e-08,
+            "p95": 3.7384815369711113e-07
+          },
+          "rows": 41,
+          "worst_normalized_row_currents_A": {
+            "ib": 1.0033640585049852e-14,
+            "id": -5.566253096125959e-09,
+            "ig": 1.6513581613253336e-09,
+            "is": 3.914889285619498e-09
+          },
+          "worst_normalized_row_index": 0
+        },
+        "last_current_magnitude_A": 1.749509391619508e-08,
+        "last_over_first_current_ratio": 3.143064753625997,
+        "last_swept_value": -0.217107
+      }
+    }
+  }
+}

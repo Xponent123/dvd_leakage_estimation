@@ -1,0 +1,691 @@
+{
+  "status": "COMPLETED",
+  "frozen_utc": "2026-10-25T09:56:07.103230+00:00",
+  "selection": "Minimize the predeclared independent single-FET boundary-validation nonzero-bias power/VDD MAPE; use uniform-validation smooth-component log RMSE only to break ties. The complete uniform-validation raw-current statistics are reported separately. No final-test or gate/circuit leakage is used for selection.",
+  "comparison_families": [
+    "extra_trees",
+    "hist_gradient_boosting",
+    "local_quintic_rbf",
+    "random_forest"
+  ],
+  "selection_file": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/revision_selection.json",
+  "selection_file_sha256": "39096a41a7320acc538986cb512b31f0e9a88dc920367e59d03d21f67eea3f7d",
+  "input_manifest_sha256": "4e6db1e10970a806389faba3ec173e866376aab8cb42fb2140f4d9943f6c7aeb",
+  "source_sha256": {
+    "scripts/11_finalize_revision.py": "85863bef6a42129ee1aaa66df2e981d19b11ff9b34d1637f826a06dc140ef7e3",
+    "scripts/03_train_models.py": "fea8a11c5b14b11e88e3cbf6f3cafc736d384cb416593f498ece5bb41a60202a",
+    "lusr/smooth_models.py": "f70294e28065b34d467b41b2f69bc7c9e298a61deec80a55741508ba33f82127",
+    "lusr/spice.py": "32bfa3da35bee4f325349bcd12d95e80db3fda98cb9f85c6523ab8239f29abcc",
+    "lusr/revision_models.py": "daf739140bf3dbf2d2cc0a21373f768e0c3eae2a8bed05b456b312adc405aa77",
+    "lusr/ml.py": "1607c4de090d1048f8ffa488b68f5242117f6a7e805b39dc4ca765a9de45d01f",
+    "lusr/physics_surrogate.py": "568338e3afb3c5068cee329ecda265c440d82b52cc0cc9d23e3c19fdf2c1a6c2",
+    "lusr/__init__.py": "6ad07756b6967db7a1c26e5f89a3d4c9d21982f04e1cdb87a7ef1854b36a4a5b",
+    "lusr/sampling.py": "5646f8fb3dc82c092d5b58a8f0fa4d305b6fa73a9f41b95647aff149f978d615",
+    "lusr/circuits.py": "97ceec904c05460c43a264795f655c787c87f5f9afaf77bf9c9f362b414c5425",
+    "lusr/model_card.py": "3e2600484a4b4d1077d96de9637b017537b3baceacd8c663ca700654f896901d"
+  },
+  "comparison_sha256": "b233087566ed4c75127e546b0987dd64c8a17004a3834b63b0b3a39b9bdf9863",
+  "preprocessing": {
+    "features": "Canonical drain/source polarity, voltage coordinates and smooth temperature/geometry/process functions of the original12 inputs.",
+    "targets": "Positive conductance and gate/body magnitudes in logarithms; physical baselines normalize selected targets. Every fitted residual uses70000 uniform training rows only.",
+    "validation": "15000 uniform rows plus512 independent boundary single-FET rows per case; test15000 rows remain untouched until allfour model files and sources are frozen."
+  },
+  "cases": {
+    "nmos_on": {
+      "selected_family": "local_quintic_rbf",
+      "selected_model": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/models/nmos_on.joblib",
+      "selected_model_sha256": "9c2c105207e4c93379ddb38b02ae4811c3347035c39e89bd7657682c2a28da3e",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9999989773111029,
+          "mae_A": 2.9775535215298e-08,
+          "rmse_A": 7.951787944143386e-08,
+          "median_relative_error_pct": 0.06838167689623466,
+          "p95_relative_error_pct": 1.3765939174387811,
+          "mape_pct": 0.3196971848040576,
+          "mean_accuracy_pct": 99.68030281519594,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.2578184481837646,
+          "median_pct": 0.07146091447735246,
+          "p95_pct": 1.102563297279354,
+          "terminal_mape_pct": 0.2578184481837646,
+          "terminal_median_pct": 0.07146091447735246,
+          "terminal_p95_pct": 1.102563297279354,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 0.16926365646749683,
+          "median_pct": 0.11362916179190824,
+          "p95_pct": 0.4441664509803679,
+          "terminal_mape_pct": 0.16926365646749683,
+          "terminal_median_pct": 0.11362916179190824,
+          "terminal_p95_pct": 0.4441664509803679,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "raw",
+          "neighbors": 256,
+          "gate_correction": {
+            "family": "local_quintic_rbf",
+            "neighbors": 256,
+            "style": "raw",
+            "degree": 2,
+            "regularization": 1e-12
+          }
+        }
+      },
+      "reload_validation": "PASS: exact equality on32 validation rows",
+      "provenance": {
+        "current_csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/nmos_on.csv",
+        "current_sha256": "4ac61688d602221457b142e9bc02d501b1dae4298e2041b2b070e89d4cd15324",
+        "input_sha256": "8316613a79375b30583daa53dc464b5c2b858b125214c09d1920f1075ad7949b",
+        "split_sha256": "41f424138a5eee5650b4083e7cb47282dce53d2966dc5b485b85a0163286796e",
+        "partition_counts": {
+          "train": 70000,
+          "validation": 15000,
+          "test": 15000
+        }
+      },
+      "test_predictions": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/test_predictions/nmos_on.csv",
+      "test_predictions_sha256": "da40d7250287c78724ee20803cafdf0f53b2a509587825ce57d5d9204100af6c",
+      "test_score": {
+        "case": "nmos_on",
+        "model": "local_quintic_rbf",
+        "rows": 15000,
+        "values": 60000,
+        "raw_r2": 0.9999991671143996,
+        "mae_A": 3.02116343229733e-08,
+        "rmse_A": 7.955524362187552e-08,
+        "median_relative_error_pct": 0.06750302085016543,
+        "p95_relative_error_pct": 1.3116458486363218,
+        "mape_pct": 0.30715409018199075,
+        "mean_accuracy_pct": 99.692845909818,
+        "relative_error_floor_A": 1e-18,
+        "floor_reference_count": 0,
+        "median_abs_kcl_residual_A": 1.5084329959938576e-16,
+        "max_abs_kcl_residual_A": 6.457916757034252e-13,
+        "power_mape_pct": 0.24124491999082637,
+        "power_mean_accuracy_pct": 99.75875508000918
+      },
+      "test_terminal_scores": [
+        {
+          "case": "nmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "id",
+          "values": 15000,
+          "raw_r2": 0.9999993083316944,
+          "mae_A": 6.041741341205075e-08,
+          "rmse_A": 1.1250871165580919e-07,
+          "median_relative_error_pct": 0.07032913984347997,
+          "p95_relative_error_pct": 1.0906891473778837,
+          "mape_pct": 0.2627640373945669,
+          "mean_accuracy_pct": 99.73723596260542,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "ig",
+          "values": 15000,
+          "raw_r2": 0.9999990020741936,
+          "mae_A": 1.1824324035040304e-11,
+          "rmse_A": 2.925768518338093e-11,
+          "median_relative_error_pct": 0.05933280595772729,
+          "p95_relative_error_pct": 2.2194206106583594,
+          "mape_pct": 0.4136585615497336,
+          "mean_accuracy_pct": 99.58634143845026,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "is",
+          "values": 15000,
+          "raw_r2": 0.9999993083481744,
+          "mae_A": 6.041721732632164e-08,
+          "rmse_A": 1.1250749350869737e-07,
+          "median_relative_error_pct": 0.0702551327064744,
+          "p95_relative_error_pct": 1.0919811152287093,
+          "mape_pct": 0.31792343595173506,
+          "mean_accuracy_pct": 99.68207656404826,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "ib",
+          "values": 15000,
+          "raw_r2": 0.9999990497035363,
+          "mae_A": 8.222948578086225e-14,
+          "rmse_A": 9.33876812300773e-13,
+          "median_relative_error_pct": 0.0719627766159815,
+          "p95_relative_error_pct": 0.9629612919341689,
+          "mape_pct": 0.23427032583192772,
+          "mean_accuracy_pct": 99.76572967416807,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        }
+      ]
+    },
+    "nmos_off": {
+      "selected_family": "local_quintic_rbf",
+      "selected_model": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/models/nmos_off.joblib",
+      "selected_model_sha256": "ab1fb04c59b974a70100e41a942368b0225f4bf96e2493f0160de04a6002d33b",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9142153059857121,
+          "mae_A": 6.075211985878553e-12,
+          "rmse_A": 5.299190701693492e-11,
+          "median_relative_error_pct": 0.0034512846628625446,
+          "p95_relative_error_pct": 5.1828811608419665,
+          "mape_pct": 13.020230180450291,
+          "mean_accuracy_pct": 86.97976981954972,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.09515665919238954,
+          "median_pct": 0.00345390347387034,
+          "p95_pct": 0.46980303397482603,
+          "terminal_mape_pct": 0.09515665919238954,
+          "terminal_median_pct": 0.00345390347387034,
+          "terminal_p95_pct": 0.46980303397482603,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 1.228036537629206,
+          "median_pct": 0.2164368000807385,
+          "p95_pct": 5.521478895342416,
+          "terminal_mape_pct": 1.228036537629206,
+          "terminal_median_pct": 0.2164368000807385,
+          "terminal_p95_pct": 5.521478895342416,
+          "floor_reference_count": 1
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "junction",
+          "neighbors": 512
+        }
+      },
+      "reload_validation": "PASS: exact equality on32 validation rows",
+      "provenance": {
+        "current_csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/nmos_off.csv",
+        "current_sha256": "7f5f7f72b1f186f5580a78aeb162df30d2ec81281ad98aedd23b660b13a99e99",
+        "input_sha256": "972f996baad34d764ea6a4175a00a7b3b56837c1368fe5a544e0dfe562c22786",
+        "split_sha256": "b63fc8f321b44960ece6b870622f5ab72daa8c2c0d8380228d126ed711e83246",
+        "partition_counts": {
+          "train": 70000,
+          "validation": 15000,
+          "test": 15000
+        }
+      },
+      "test_predictions": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/test_predictions/nmos_off.csv",
+      "test_predictions_sha256": "912668970268515d89e38cb3b35da25dbc9206f864535e73877807befbba8054",
+      "test_score": {
+        "case": "nmos_off",
+        "model": "local_quintic_rbf",
+        "rows": 15000,
+        "values": 60000,
+        "raw_r2": 0.8273762591751728,
+        "mae_A": 7.000204091969403e-12,
+        "rmse_A": 5.623340406688601e-11,
+        "median_relative_error_pct": 0.003756449600512439,
+        "p95_relative_error_pct": 4.873952011487196,
+        "mape_pct": 4.017522288605038,
+        "mean_accuracy_pct": 95.98247771139496,
+        "relative_error_floor_A": 1e-18,
+        "floor_reference_count": 0,
+        "median_abs_kcl_residual_A": 6.251208336566314e-23,
+        "max_abs_kcl_residual_A": 3.709528894751737e-18,
+        "power_mape_pct": 0.09471217716399324,
+        "power_mean_accuracy_pct": 99.90528782283602
+      },
+      "test_terminal_scores": [
+        {
+          "case": "nmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "id",
+          "values": 15000,
+          "raw_r2": 0.9999812362668328,
+          "mae_A": 1.4000153992482168e-11,
+          "rmse_A": 7.952602736045554e-11,
+          "median_relative_error_pct": 0.021597602378990107,
+          "p95_relative_error_pct": 2.5816186640673786,
+          "mape_pct": 3.5764965196022867,
+          "mean_accuracy_pct": 96.42350348039771,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "ig",
+          "values": 15000,
+          "raw_r2": 1.0,
+          "mae_A": 1.2684491681182626e-17,
+          "rmse_A": 8.323564650378114e-17,
+          "median_relative_error_pct": 2.7687771411909223e-08,
+          "p95_relative_error_pct": 5.015051240530067e-07,
+          "mape_pct": 2.851431538601613e-07,
+          "mean_accuracy_pct": 99.99999971485684,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "is",
+          "values": 15000,
+          "raw_r2": 0.999981525151969,
+          "mae_A": 1.400019525667659e-11,
+          "rmse_A": 7.952605794431855e-11,
+          "median_relative_error_pct": 0.02052059414716584,
+          "p95_relative_error_pct": 2.7224569025695566,
+          "mape_pct": 3.500148853289416,
+          "mean_accuracy_pct": 96.49985114671058,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "nmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "ib",
+          "values": 15000,
+          "raw_r2": 0.3095422752818888,
+          "mae_A": 4.544342271745608e-16,
+          "rmse_A": 3.448582809154893e-15,
+          "median_relative_error_pct": 0.0843038042868782,
+          "p95_relative_error_pct": 26.39471561063644,
+          "mape_pct": 8.993443496385295,
+          "mean_accuracy_pct": 91.00655650361472,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        }
+      ]
+    },
+    "pmos_on": {
+      "selected_family": "local_quintic_rbf",
+      "selected_model": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/models/pmos_on.joblib",
+      "selected_model_sha256": "05c3c347f6236114bc8d2028c2c04fa58b295c92c5eecb35a1670220617fa3d5",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9999990149868478,
+          "mae_A": 6.771826283537821e-09,
+          "rmse_A": 1.8546125819439565e-08,
+          "median_relative_error_pct": 0.0361368635963942,
+          "p95_relative_error_pct": 1.0775841945790714,
+          "mape_pct": 0.28848457067020167,
+          "mean_accuracy_pct": 99.7115154293298,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.16924070444315154,
+          "median_pct": 0.03021231548155123,
+          "p95_pct": 0.7988208746995437,
+          "terminal_mape_pct": 0.16924070444315154,
+          "terminal_median_pct": 0.03021231548155123,
+          "terminal_p95_pct": 0.7988208746995437,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 0.3155437474530926,
+          "median_pct": 0.19036737396167322,
+          "p95_pct": 1.053893941765167,
+          "terminal_mape_pct": 0.3155437474530926,
+          "terminal_median_pct": 0.19036737396167322,
+          "terminal_p95_pct": 1.053893941765167,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "raw",
+          "neighbors": 256,
+          "gate_correction": {
+            "family": "local_quintic_rbf",
+            "neighbors": 256,
+            "style": "raw",
+            "degree": 2,
+            "regularization": 1e-12
+          }
+        }
+      },
+      "reload_validation": "PASS: exact equality on32 validation rows",
+      "provenance": {
+        "current_csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/pmos_on.csv",
+        "current_sha256": "ca8deb9e45b2c28cb4ced34b1e65e0c4da518cf04648919893fff559a58c878f",
+        "input_sha256": "6df2dec7aba6f81887a81c75b0cecf012a6c54bf963f7f9a6be8fc4bb3fddf1f",
+        "split_sha256": "988c4692c385a58dd2f0c9ebf4d3135833486969f4888b807e3a7c882765f07f",
+        "partition_counts": {
+          "train": 70000,
+          "validation": 15000,
+          "test": 15000
+        }
+      },
+      "test_predictions": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/test_predictions/pmos_on.csv",
+      "test_predictions_sha256": "53c1922ad006d4b6063912827cbd0fec0370aeeeb2470628b86c5b204e16764e",
+      "test_score": {
+        "case": "pmos_on",
+        "model": "local_quintic_rbf",
+        "rows": 15000,
+        "values": 60000,
+        "raw_r2": 0.9999988319762965,
+        "mae_A": 6.975475805627803e-09,
+        "rmse_A": 1.9171523611341253e-08,
+        "median_relative_error_pct": 0.03699656324091118,
+        "p95_relative_error_pct": 1.0803093576742009,
+        "mape_pct": 0.2777642973909098,
+        "mean_accuracy_pct": 99.72223570260908,
+        "relative_error_floor_A": 1e-18,
+        "floor_reference_count": 0,
+        "median_abs_kcl_residual_A": 1.0434515125188705e-17,
+        "max_abs_kcl_residual_A": 4.135883325141758e-13,
+        "power_mape_pct": 0.16939113023744365,
+        "power_mean_accuracy_pct": 99.83060886976256
+      },
+      "test_terminal_scores": [
+        {
+          "case": "pmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "id",
+          "values": 15000,
+          "raw_r2": 0.999999726303378,
+          "mae_A": 1.3943513469831629e-08,
+          "rmse_A": 2.7112465640124895e-08,
+          "median_relative_error_pct": 0.030275123034547012,
+          "p95_relative_error_pct": 0.8164351582019206,
+          "mape_pct": 0.17160754395338046,
+          "mean_accuracy_pct": 99.82839245604663,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "ig",
+          "values": 15000,
+          "raw_r2": 0.9999983476141793,
+          "mae_A": 1.432556426557819e-11,
+          "rmse_A": 3.788604403986788e-11,
+          "median_relative_error_pct": 0.05709420363993532,
+          "p95_relative_error_pct": 3.390683698891856,
+          "mape_pct": 0.6039953890788669,
+          "mean_accuracy_pct": 99.39600461092112,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "is",
+          "values": 15000,
+          "raw_r2": 0.9999997263041437,
+          "mae_A": 1.3943644372935568e-08,
+          "rmse_A": 2.711276493073128e-08,
+          "median_relative_error_pct": 0.030234328965526122,
+          "p95_relative_error_pct": 0.8153668124768597,
+          "mape_pct": 0.18324869022596416,
+          "mean_accuracy_pct": 99.81675130977403,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_on",
+          "model": "local_quintic_rbf",
+          "terminal": "ib",
+          "values": 15000,
+          "raw_r2": 0.9999975276834852,
+          "mae_A": 4.1981547843886717e-13,
+          "rmse_A": 4.437621298878728e-12,
+          "median_relative_error_pct": 0.033719517993638655,
+          "p95_relative_error_pct": 0.7041019003201928,
+          "mape_pct": 0.1522055663054276,
+          "mean_accuracy_pct": 99.84779443369457,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        }
+      ]
+    },
+    "pmos_off": {
+      "selected_family": "local_quintic_rbf",
+      "selected_model": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/models/pmos_off.joblib",
+      "selected_model_sha256": "85c77c0c7a45cc008899c72523e9bec4221f57d53bb147506a0e9ade6bb099d1",
+      "validation_summary": {
+        "uniform_currents": {
+          "values": 60000,
+          "raw_r2": 0.9585431851855593,
+          "mae_A": 7.0748455425894046e-12,
+          "rmse_A": 4.757122141576476e-11,
+          "median_relative_error_pct": 0.016182157929599074,
+          "p95_relative_error_pct": 5.203577452664069,
+          "mape_pct": 3.1314605256471943,
+          "mean_accuracy_pct": 96.86853947435281,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        "uniform_power": {
+          "mape_pct": 0.1309335581500127,
+          "median_pct": 0.004970695173623977,
+          "p95_pct": 0.6597016420762557,
+          "terminal_mape_pct": 0.1309335581500127,
+          "terminal_median_pct": 0.004970695173623977,
+          "terminal_p95_pct": 0.6597016420762557,
+          "floor_reference_count": 0
+        },
+        "boundary_power": {
+          "mape_pct": 1.2019027913203184,
+          "median_pct": 0.19604028277492727,
+          "p95_pct": 6.1995002844846745,
+          "terminal_mape_pct": 1.2019027913203184,
+          "terminal_median_pct": 0.19604028277492727,
+          "terminal_p95_pct": 6.1995002844846745,
+          "floor_reference_count": 0
+        },
+        "parameters": {
+          "method": "rbf",
+          "degree": 2,
+          "regularization": 1e-12,
+          "kernel": "quintic",
+          "physics_normalized": true,
+          "baseline_kind": "gate",
+          "jobs": 1,
+          "style": "junction",
+          "neighbors": 256
+        }
+      },
+      "reload_validation": "PASS: exact equality on32 validation rows",
+      "provenance": {
+        "current_csv": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/data/transistors/pmos_off.csv",
+        "current_sha256": "5134fb770f0fd1438a46ae9b46056e2df9b810ad4d108a85d4464f14eb042122",
+        "input_sha256": "b82761f66a398907525115aa5207d9286d82a795899a267a238b560d381bf366",
+        "split_sha256": "136625f8766e7d739ca24d2f23be9d66ca8d5c925a5daae25547064b70f71c43",
+        "partition_counts": {
+          "train": 70000,
+          "validation": 15000,
+          "test": 15000
+        }
+      },
+      "test_predictions": "/home/error404/Downloads/dvd/project/lusr_parity/improvements_99/results/test_predictions/pmos_off.csv",
+      "test_predictions_sha256": "3b207e31add076ad802462fc3c23ccca85bab8ea624e130d6d4c8600190c770a",
+      "test_score": {
+        "case": "pmos_off",
+        "model": "local_quintic_rbf",
+        "rows": 15000,
+        "values": 60000,
+        "raw_r2": 0.9693193159075328,
+        "mae_A": 6.823322014538486e-12,
+        "rmse_A": 4.8190279965841005e-11,
+        "median_relative_error_pct": 0.0137168999064878,
+        "p95_relative_error_pct": 4.770203754234961,
+        "mape_pct": 16.581065262484437,
+        "mean_accuracy_pct": 83.41893473751556,
+        "relative_error_floor_A": 1e-18,
+        "floor_reference_count": 0,
+        "median_abs_kcl_residual_A": 6.082360424793312e-16,
+        "max_abs_kcl_residual_A": 2.794351230738131e-12,
+        "power_mape_pct": 0.12629018173513265,
+        "power_mean_accuracy_pct": 99.87370981826487
+      },
+      "test_terminal_scores": [
+        {
+          "case": "pmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "id",
+          "values": 15000,
+          "raw_r2": 0.9999771328993001,
+          "mae_A": 1.364608741576309e-11,
+          "rmse_A": 6.815136438001673e-11,
+          "median_relative_error_pct": 0.020195803600539772,
+          "p95_relative_error_pct": 2.8258590159428643,
+          "mape_pct": 1.5607843888888393,
+          "mean_accuracy_pct": 98.43921561111117,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "ig",
+          "values": 15000,
+          "raw_r2": 0.9999999999999839,
+          "mae_A": 8.446825251350908e-16,
+          "rmse_A": 1.3024084096577711e-15,
+          "median_relative_error_pct": 1.265453242563096e-05,
+          "p95_relative_error_pct": 0.00045351693554493086,
+          "mape_pct": 0.00014922669552251385,
+          "mean_accuracy_pct": 99.99985077330447,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "is",
+          "values": 15000,
+          "raw_r2": 0.9999769847904758,
+          "mae_A": 1.3645960400766285e-11,
+          "rmse_A": 6.815133059445451e-11,
+          "median_relative_error_pct": 0.02070937906861323,
+          "p95_relative_error_pct": 2.9197774899419446,
+          "mape_pct": 57.67285190758241,
+          "mean_accuracy_pct": 42.32714809241759,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        },
+        {
+          "case": "pmos_off",
+          "model": "local_quintic_rbf",
+          "terminal": "ib",
+          "values": 15000,
+          "raw_r2": 0.8773231459403732,
+          "mae_A": 3.955590994286198e-16,
+          "rmse_A": 1.5478482773279494e-15,
+          "median_relative_error_pct": 0.1543650170681919,
+          "p95_relative_error_pct": 25.68654422154018,
+          "mape_pct": 7.090475526771009,
+          "mean_accuracy_pct": 92.90952447322898,
+          "relative_error_floor_A": 1e-18,
+          "floor_reference_count": 0
+        }
+      ]
+    }
+  },
+  "hyperparameter_table": [
+    [
+      "Random forest",
+      "128 trees; all features; unrestricted depth; minimum leaf size2; seed20261024."
+    ],
+    [
+      "Extra trees",
+      "128 trees; all features; unrestricted depth; minimum leaf size2; seed20261024."
+    ],
+    [
+      "Histogram gradient boosting",
+      "Four target regressors;400 iterations; rate0.08;63 leaves; minimum leaf15; L2=0.01; seed20261024."
+    ],
+    [
+      "local_quintic_rbf",
+      "Local quintic RBF, degree2 polynomial, smoothing1e-12.512 neighbors for NMOS OFF;256 for other cases. ON cases additionally learn a gate-edge log residual using256 neighbors."
+    ]
+  ],
+  "representation_description": "Canonical PMOS polarity and ordered drain/source; log positive Gd/Gs and |Ig|/|Ib|, with width normalization; OFF log residuals relative to fixed BSIM gate-edge and diode-shaped body baselines. ON uses a separately learned gate-edge residual with compensating half gate-current changes in Id/Is; learned channel difference and KCL residual preserved. All four currents reconstructed from learned residuals; no SPICE at inference. Exact all-terminal-equal zero invariant.",
+  "validation_evidence": {
+    "improvements_99/physics_selected/manifest.json": "3ac56d87481d2f2137fb0256510b9a2806ace29de6f3909af5d70ee1e9f8cdfd",
+    "experiments/physics/boundary_validation/protocol.json": "9851e8badd071ee029efcbdf0ee2d8dc9d3ed9590c8f1b9c6dc8cafd0dff1537",
+    "experiments/physics/boundary_validation/nmos_on.csv": "238842ad3bf073c3f69b57f3b9bd9f8551cd1e7f649c495d938caceafe529cb7",
+    "experiments/physics/boundary_validation/nmos_off.csv": "29a8f6879b037ffe757e5b358d5792123a2d0c3498083ffb91e00b7cdf516573",
+    "experiments/physics/boundary_validation/pmos_on.csv": "1c80a3ab3bc7b21a68005d0bce1052319f5184227f236cfae1bb4509379beb64",
+    "experiments/physics/boundary_validation/pmos_off.csv": "4cf25e1404dc71bee45e4e12b41ad7b5e3a7f6ce393749d93fa583451b73801a",
+    "improvements_99/results/tree_comparison/nmos_on_random_forest.json": "ad8e824131a43195ae02aad133dbf7ba7ef41d1179f326e203e9b8095daea6f4",
+    "improvements_99/results/tree_comparison/nmos_on_extra_trees.json": "2cfa17958d007e7cc88ebded1ab4a5a23361d42f9be7694d80136f890f7bc354",
+    "improvements_99/results/tree_comparison/nmos_on_hist_gradient_boosting.json": "b87462498da299bcabddf515aa127feb85a80ff4bc4c7b5fb46369ed47f2fd0b",
+    "improvements_99/physics_selected/models/nmos_on.joblib": "9c2c105207e4c93379ddb38b02ae4811c3347035c39e89bd7657682c2a28da3e",
+    "improvements_99/physics_selected/metrics/nmos_on.json": "268e7fc55ff00dc129c3b4afc42ab82a60aed19305d7e721578cf0a8f688bd65",
+    "improvements_99/physics_selected/validation_predictions/nmos_on.csv": "25a8b278150c43ece3674265278391cc62ede0c15da98329a37ff231974fe24d",
+    "improvements_99/physics_selected/boundary_predictions/nmos_on.csv": "dd43100e93c7a40b8889c0b9cb313411e8adc1a45754391285d7851dfc21d876",
+    "improvements_99/results/tree_comparison/nmos_off_random_forest.json": "45653c56a74f3b42f7c3dc346c7b960fab2fcfbfa526ed8b76dce83d74f4f601",
+    "improvements_99/results/tree_comparison/nmos_off_extra_trees.json": "0044f351b67a51a0191dee7e3c9ed06a3aef81b5175d4001dddbaf9bf805e58b",
+    "improvements_99/results/tree_comparison/nmos_off_hist_gradient_boosting.json": "32757acc1432ddac8e2d54e94e15d853d93a13f2e76ff6b25446cc651c6ffe4d",
+    "improvements_99/physics_selected/models/nmos_off.joblib": "ab1fb04c59b974a70100e41a942368b0225f4bf96e2493f0160de04a6002d33b",
+    "improvements_99/physics_selected/metrics/nmos_off.json": "c99d23a7c60a4c6391a543a1b0ca76aa47c8fcd5e391c63a0e447e30b3bf050d",
+    "improvements_99/physics_selected/validation_predictions/nmos_off.csv": "7b7e47544798c07852eee17cd02a39c614f10c8780741a532cc0e5adfaef1021",
+    "improvements_99/physics_selected/boundary_predictions/nmos_off.csv": "814b94c7832867934ff3a34006cc29d8cc0855fa377e20dd2feef0a27eaeaa54",
+    "improvements_99/results/tree_comparison/pmos_on_random_forest.json": "cdd249a10fd8d4962d43efeeed18d59bb3097b0a47e6c9413ee457db0295b80a",
+    "improvements_99/results/tree_comparison/pmos_on_extra_trees.json": "5e568d844dc80103cb32d5e83fb9ca4c09c27f83843f08b8c40994f1225f709b",
+    "improvements_99/results/tree_comparison/pmos_on_hist_gradient_boosting.json": "d006a0381213107f75a93066df01a1c66725bd5e2b9efc18cc95025e93015f49",
+    "improvements_99/physics_selected/models/pmos_on.joblib": "05c3c347f6236114bc8d2028c2c04fa58b295c92c5eecb35a1670220617fa3d5",
+    "improvements_99/physics_selected/metrics/pmos_on.json": "505af8e0e57750587bdef729900a3639028f8172d0047ad2fa43ad78b074336b",
+    "improvements_99/physics_selected/validation_predictions/pmos_on.csv": "f2ac48b1c78be9c2fe74ac69d01d6710ad22b3f2d48bb7e5368351c7030f69b7",
+    "improvements_99/physics_selected/boundary_predictions/pmos_on.csv": "395734f6fdc25c9dfa75067a1356cb18d0d9f38b4a5a27d29972e83966dc4af8",
+    "improvements_99/results/tree_comparison/pmos_off_random_forest.json": "5bbdb6c93f996bf9a854df2a6b33e06f9d3693907bb2b4c21e2b18440038d894",
+    "improvements_99/results/tree_comparison/pmos_off_extra_trees.json": "9bf25d3e765543384dc3a6d30bd160f2a9225decd1065c118d1a82c05c8db83c",
+    "improvements_99/results/tree_comparison/pmos_off_hist_gradient_boosting.json": "abebefa81f57fbb1ba729bcc5b2ceefa9618c57d05dfd1189adae01d47eaf78c",
+    "improvements_99/physics_selected/models/pmos_off.joblib": "85c77c0c7a45cc008899c72523e9bec4221f57d53bb147506a0e9ade6bb099d1",
+    "improvements_99/physics_selected/metrics/pmos_off.json": "83741ade8f7ae6a78ee91a33859367b9997c44d18f6afce683fbe445a7bb3d0b",
+    "improvements_99/physics_selected/validation_predictions/pmos_off.csv": "774687beefdeea202a6a5358963cfaf823ed8f205ba436e9fee2c12592f372b4",
+    "improvements_99/physics_selected/boundary_predictions/pmos_off.csv": "b1a360b90b6d92a9ac073413a73b5b36b2d2ee6f90d42502cb50fb42ccbd5d07"
+  },
+  "test_started_utc": "2026-10-25T09:56:23.141980+00:00",
+  "test_completed_utc": "2026-10-25T10:05:45.426780+00:00",
+  "evaluation_source_sha256": {
+    "scripts/11_finalize_revision.py": "85863bef6a42129ee1aaa66df2e981d19b11ff9b34d1637f826a06dc140ef7e3",
+    "scripts/03_train_models.py": "fea8a11c5b14b11e88e3cbf6f3cafc736d384cb416593f498ece5bb41a60202a",
+    "lusr/smooth_models.py": "f70294e28065b34d467b41b2f69bc7c9e298a61deec80a55741508ba33f82127",
+    "lusr/spice.py": "32bfa3da35bee4f325349bcd12d95e80db3fda98cb9f85c6523ab8239f29abcc",
+    "lusr/revision_models.py": "daf739140bf3dbf2d2cc0a21373f768e0c3eae2a8bed05b456b312adc405aa77",
+    "lusr/ml.py": "1607c4de090d1048f8ffa488b68f5242117f6a7e805b39dc4ca765a9de45d01f",
+    "lusr/physics_surrogate.py": "568338e3afb3c5068cee329ecda265c440d82b52cc0cc9d23e3c19fdf2c1a6c2",
+    "lusr/__init__.py": "6ad07756b6967db7a1c26e5f89a3d4c9d21982f04e1cdb87a7ef1854b36a4a5b",
+    "lusr/sampling.py": "5646f8fb3dc82c092d5b58a8f0fa4d305b6fa73a9f41b95647aff149f978d615",
+    "lusr/circuits.py": "97ceec904c05460c43a264795f655c787c87f5f9afaf77bf9c9f362b414c5425",
+    "lusr/model_card.py": "3e2600484a4b4d1077d96de9637b017537b3baceacd8c663ca700654f896901d"
+  }
+}

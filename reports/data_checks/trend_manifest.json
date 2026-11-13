@@ -1,0 +1,15 @@
+{
+  "csv_sha256": "4b9077e71005fa5eed6a08e46b72c8622ab1e41008a12898775ca6600cc04657",
+  "executable_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+  "fresh_process_count": 246,
+  "input_sha256": "bdbbfc96316ebe9d56c785edd730d8b7a7de890fba6ad3b471c5599e28831788",
+  "method": "Fresh ngspice process and embedded model per point; exactly one swept input.",
+  "model_sha256": "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e",
+  "points_per_polarity_per_sweep": 41,
+  "rows": 246,
+  "simulation_source_sha256": "32bfa3da35bee4f325349bcd12d95e80db3fda98cb9f85c6523ab8239f29abcc",
+  "warning_count": 81,
+  "warning_messages": {
+    "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.": 81
+  }
+}

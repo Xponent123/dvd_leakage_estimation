@@ -1,0 +1,88 @@
+{
+  "status": "PASSED",
+  "checksummed_files": 101,
+  "transistors": {
+    "nmos_on": {
+      "rows": 100000,
+      "splits": {
+        "train": 70000,
+        "validation": 15000,
+        "test": 15000
+      },
+      "max_KCL_residual_A": 1.1477094050885338e-15
+    },
+    "nmos_off": {
+      "rows": 100000,
+      "splits": {
+        "train": 70000,
+        "validation": 15000,
+        "test": 15000
+      },
+      "max_KCL_residual_A": 3.3519803005930653e-22
+    },
+    "pmos_on": {
+      "rows": 100000,
+      "splits": {
+        "train": 70000,
+        "validation": 15000,
+        "test": 15000
+      },
+      "max_KCL_residual_A": 3.798773361846086e-17
+    },
+    "pmos_off": {
+      "rows": 100000,
+      "splits": {
+        "train": 70000,
+        "validation": 15000,
+        "test": 15000
+      },
+      "max_KCL_residual_A": 8.110376819882032e-15
+    }
+  },
+  "models": {
+    "nmos_on": {
+      "saved_model_hash": "PASS",
+      "reloaded_test_predictions": 16
+    },
+    "nmos_off": {
+      "saved_model_hash": "PASS",
+      "reloaded_test_predictions": 16
+    },
+    "pmos_on": {
+      "saved_model_hash": "PASS",
+      "reloaded_test_predictions": 16
+    },
+    "pmos_off": {
+      "saved_model_hash": "PASS",
+      "reloaded_test_predictions": 16
+    }
+  },
+  "gate": {
+    "rows": 3600,
+    "count": 3600.0,
+    "spice_median_A": 1.3796795558435374e-07,
+    "ml_median_A": 1.3814221551837207e-07,
+    "bias_A": -2.81801873008041e-10,
+    "bias_percent": -0.013201902096655525,
+    "median_error_percent": 0.25604125966343,
+    "p95_error_percent": 1.1163245147636236,
+    "mean_error_percent": 0.36497895841839584,
+    "mean_accuracy_percent": 99.63502104158161,
+    "r2": 0.9997586071847192
+  },
+  "circuit": {
+    "rows": 51200,
+    "count": 51200.0,
+    "spice_median_A": 3.616140562331916e-06,
+    "ml_median_A": 3.6011395710596377e-06,
+    "bias_A": -1.3460593590919433e-08,
+    "bias_percent": -0.16476407183742037,
+    "median_error_percent": 0.42348499663546835,
+    "p95_error_percent": 1.2142039235946778,
+    "mean_error_percent": 0.5103177523475756,
+    "mean_accuracy_percent": 99.48968224765242,
+    "r2": 0.999593649571075
+  },
+  "hierarchy": "PASS: per-transistor gate energy and all 256-vector gate sums",
+  "report": "PASS: LaTeX sources, figures and compiled PDF"
+}

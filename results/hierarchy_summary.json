@@ -1,0 +1,76 @@
+{
+  "gate": {
+    "count": 3600,
+    "spice_median_A": 1.3796795558435374e-07,
+    "ml_median_A": 1.3814221551837207e-07,
+    "bias_A": -2.81801873008041e-10,
+    "bias_percent": -0.013201902096655525,
+    "median_error_percent": 0.25604125966343,
+    "p95_error_percent": 1.1163245147636236,
+    "mean_error_percent": 0.36497895841839584,
+    "mean_accuracy_percent": 99.63502104158161,
+    "r2": 0.9997586071847192,
+    "nonpositive_predictions": 0,
+    "denominator_floor_count": 0
+  },
+  "circuit": {
+    "count": 51200,
+    "spice_median_A": 3.616140562331916e-06,
+    "ml_median_A": 3.6011395710596377e-06,
+    "bias_A": -1.3460593590919433e-08,
+    "bias_percent": -0.16476407183742037,
+    "median_error_percent": 0.42348499663546835,
+    "p95_error_percent": 1.2142039235946778,
+    "mean_error_percent": 0.5103177523475756,
+    "mean_accuracy_percent": 99.48968224765242,
+    "r2": 0.999593649571075,
+    "nonpositive_predictions": 0,
+    "denominator_floor_count": 0
+  },
+  "ideal_gate_composition_only": {
+    "count": 51200,
+    "spice_median_A": 3.616140562331916e-06,
+    "ml_median_A": 3.5993480904464064e-06,
+    "bias_A": -1.9151788062748022e-08,
+    "bias_percent": -0.2965409397980734,
+    "median_error_percent": 0.2257697804806342,
+    "p95_error_percent": 1.130698410655775,
+    "mean_error_percent": 0.36493759952265403,
+    "mean_accuracy_percent": 99.63506240047735,
+    "r2": 0.9996365961811075,
+    "nonpositive_predictions": 0,
+    "denominator_floor_count": 0
+  },
+  "ml_vs_standalone_gate_sum": {
+    "count": 51200,
+    "spice_median_A": 3.5993480904464064e-06,
+    "ml_median_A": 3.6011395710596377e-06,
+    "bias_A": 5.691194471828589e-09,
+    "bias_percent": 0.13178165502384895,
+    "median_error_percent": 0.22228224877474156,
+    "p95_error_percent": 0.7188922193462324,
+    "mean_error_percent": 0.26658359767575535,
+    "mean_accuracy_percent": 99.73341640232425,
+    "r2": 0.9999522720758772,
+    "nonpositive_predictions": 0,
+    "denominator_floor_count": 0
+  },
+  "source_closure": {
+    "max_raw_fet_kcl_A": 1.3078194990408325e-12,
+    "median_raw_fet_kcl_A": 7.567245758855738e-18,
+    "negative_fet_power_count": 0,
+    "negative_gate_power_count": 0,
+    "policy": "Retain raw four currents; close source current for energy aggregation; no clipping"
+  },
+  "voltage_provenance": "Gate SPICE node voltages reused; circuit ML uses only ideal Boolean propagation and the gate lookup at the same corner.",
+  "evaluation_isolation": "No fitting or model selection occurs in this script.",
+  "ml_manifest_sha256": "154295ab3021623c7d20ea61c3c08d8f475ab4c889d07d1af93184a6c8bb2077",
+  "reference_audit_sha256": "27382916abc13257e4e374519ac012de37182a8864dd1396ec27b75b0e092a66",
+  "hierarchy_source_sha256": "af07cb138f38097297e8290f56ddfee54418c7b7780a3af2b2f57a0117f3a22b",
+  "model_hashes": {
+    "nmos_on": "9c2c105207e4c93379ddb38b02ae4811c3347035c39e89bd7657682c2a28da3e",
+    "nmos_off": "ab1fb04c59b974a70100e41a942368b0225f4bf96e2493f0160de04a6002d33b",
+    "pmos_on": "05c3c347f6236114bc8d2028c2c04fa58b295c92c5eecb35a1670220617fa3d5",
+    "pmos_off": "85c77c0c7a45cc008899c72523e9bec4221f57d53bb147506a0e9ade6bb099d1"
+  }
+}
