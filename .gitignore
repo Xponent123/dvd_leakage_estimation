@@ -10,3 +10,4 @@ reports/*.log
 reports/*.out
 reports/*.fls
 reports/*.fdb_latexmk
+logs/

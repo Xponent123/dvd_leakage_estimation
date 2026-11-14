@@ -693,7 +693,13 @@ OR2 00 & 46 & 107 & 0.943 & 3.09 \\
 \endgroup
 \vspace{2pt}
 
-The largest-error rows and their corner identifiers are retained in results/worst\_gate\_cases.csv and worst\_circuit\_cases.csv. Full corner records provide both polarities' process values. The scatter below shows association with PVT parameters, not a controlled causal experiment: other sampled parameters vary simultaneously.
+The largest-error rows and their corner identifiers are retained in results/worst\_gate\_cases.csv and worst\_circuit\_cases.csv. Full corner records provide both polarities' process values.
+
+\input{error_analysis.tex}
+
+\clearpage
+
+The following scatter shows association with PVT parameters, rather than a controlled causal experiment: other sampled parameters vary simultaneously. The single-device counterfactual above changes only the internal gate bias and therefore tests that particular error mechanism directly.
 
 \begin{figure}[H]
 \centering
@@ -717,7 +723,7 @@ This is a compact-model simulation study, not measured silicon. The assigned pre
 
 The prescribed Part B method already needs SPICE internal/output voltages at each evaluated gate corner; it is not an entirely SPICE-free node solver. Part C then replaces real inter-stage analog behavior with Boolean states. Consequently a high transistor R² does not imply 99\% gate or circuit accuracy.
 
-Remaining improvements include better treatment of tiny body currents and signed cancellations, a gate-body residual that remains representable at zero edge voltage, and measured uncertainty on new PVT domains. The physics normalization is specific to the assigned model and is not claimed to transfer unchanged to another technology. Any targeted rail-boundary training would need to remain distinct from the brief's uniform sampling requirement. An independently validated internal-node solver would be a separate extension. Gate/circuit evaluation currents must remain excluded from fitting and model selection.
+Remaining improvements include better treatment of tiny body currents and signed cancellations, a gate-body residual that remains representable at zero edge voltage, and measured uncertainty on new PVT domains. The OFF-device checks show that internal gate voltages only a few millivolts away from a rail can materially change leakage; a separate validation set should assess that bias shift while retaining the brief's fixed gate biases in training. The physics normalization is specific to the assigned model and is not claimed to transfer unchanged to another technology. Any targeted rail-boundary training would need to remain distinct from the brief's uniform sampling requirement. An independently validated internal-node solver would be a separate extension. Gate/circuit evaluation currents must remain excluded from fitting and model selection.
 
 \clearpage
 
@@ -755,6 +761,7 @@ Four saved models & \path|models/{case}.joblib| \\
 Held-out currents and metrics & \path|results/test_predictions/| and transistor\_test*.csv \\
 18-case gate table and predictions & \path|results/gate_metrics.csv| and gate\_predictions.csv \\
 51,200 circuit predictions / 256-vector table & \path|results/circuit_predictions.csv| and circuit\_metrics\_by\_vector.csv \\
+Worst-error explanation & \path|results/error_analysis.json|, \path|reports/error_analysis.tex| and \path|code/scripts/15_explain_worst_cases.py| \\
 Shared source code / environment & \path|code/lusr/|, \path|code/scripts/|, \path|code/requirements.lock.txt| \\
 Typed report / figures & \path|reports/LUSR_8bit_Parity_Leakage_Report.pdf|, \path|reports/main.tex| and accompanying figures \\
 \end{longtable}

@@ -21,6 +21,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Table,TableStyle,Image,PageBreak,KeepTogether
 from lusr.spice import ROOT,sha256
+SOURCE_ROOT = ROOT
 
 
 def load(path):return json.loads((ROOT/path).read_text())
@@ -81,11 +82,19 @@ def main():
     global ROOT
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-root',type=Path,default=ROOT)
+    parser.add_argument('--reuse-figures',action='store_true',help='Use already generated figures without redrawing them')
     args=parser.parse_args();ROOT=args.output_root.resolve()
     summary=load('results/hierarchy_summary.json');ml=load('results/ml_manifest.json')
     checks=load('reports/data_checks/data_checks.json');sim=load('reports/spice_both_manifest.json')
     audit=load('reports/circuit_reference_validation.json')
-    decisions=load('docs/design_decisions.json');inputs=load('data/input_manifest.json')
+    decisions_path=ROOT/'docs/design_decisions.json'
+    if not decisions_path.exists():decisions_path=SOURCE_ROOT/'docs/design_decisions.json'
+    decisions=json.loads(decisions_path.read_text());inputs=load('data/input_manifest.json')
+    analysis=load('results/error_analysis.json')
+    import importlib.util
+    specification=importlib.util.spec_from_file_location('error_analysis',SOURCE_ROOT/'scripts/15_explain_worst_cases.py')
+    explanation=importlib.util.module_from_spec(specification);specification.loader.exec_module(explanation)
+    explanation.validate_artifacts(ROOT,analysis)
     if ml['status']!='COMPLETED' or audit['status']!='PASSED':
         raise ValueError('Complete held-out evaluation and independent reference validation first')
     for case,metadata in ml['cases'].items():
@@ -93,7 +102,10 @@ def main():
             raise ValueError(f'Stale selected model or hierarchy result: {case}')
     if 'ml_manifest_sha256' in summary and summary['ml_manifest_sha256']!=sha256(ROOT/'results/ml_manifest.json'):
         raise ValueError('Hierarchy evaluation used a different model manifest')
-    figure_assets()
+    if args.reuse_figures:
+        for name in ('nmos_on_parity','nmos_off_parity','pmos_on_parity','pmos_off_parity','architecture','corner_error'):
+            if not (ROOT/'reports/figures'/f'{name}.png').is_file():raise FileNotFoundError(f'Missing figure: {name}')
+    else:figure_assets()
     revised='frozen_utc' in ml
     count=inputs['datasets']['nmos_on']['rows']
     partitions=ml['cases']['nmos_on']['provenance']['partition_counts']
@@ -195,7 +207,7 @@ def main():
     families=ml.get('comparison_families',['random_forest','extra_trees','hist_gradient_boosting','mlp'])
     text('Four families are compared: '+', '.join(families)+'. Deterministic voltage, temperature and geometry transformations are computed from the 12 specified inputs. All fitted preprocessing uses training rows only. Validation controls model selection and documented tuning; the test partition is reserved for the selected models. No gate or circuit reference currents are used for fitting or selection.')
     text('Selection policy: '+ml['selection'])
-    text('Preprocessing, hyperparameters and provenance are recorded in results/ml_manifest.json; revised training-run details are retained under physics_selected/. The saved model API accepts the original 12 inputs and returns four raw signed terminal currents. Reloaded predictions are checked against predictions before serialization.')
+    text('Preprocessing, hyperparameters, validation summaries and freeze provenance are recorded in results/ml_manifest.json and results/revision_selection.json. The saved model API accepts the original 12 inputs and returns four raw signed terminal currents. Reloaded predictions are checked against predictions before serialization.')
     if 'preprocessing' in ml:
         for key,value in ml['preprocessing'].items():text(key+': '+str(value),'SmallCustom')
     table(['Case / family / variant','Raw R²','Median error (%)','p95 error (%)','Boundary power MAPE (%)','Selected'],[
@@ -206,7 +218,7 @@ def main():
         table(['Family','Main hyperparameters'],ml['hyperparameter_table'],[140,365])
         text(ml['representation_description'])
         text('In ordered, NMOS-polarity coordinates let ΔV=Vhigh−Vlow and H=(Ig+Ib)/2. The learned positive channel quantities are Gd=(Id+H)/ΔV and Gs=−(Is+H)/ΔV. Training divides these conductances and |Ig| by (W−10 nm)/100 nm; body current is not width normalized. Natural logarithms handle the dynamic range. The inverse transformation restores signs and the original drain/source ordering. Gd and Gs are separate learned outputs, so raw KCL remains a reported diagnostic.')
-        text('For OFF cases, the gate-current baseline is the fixed BSIM gate-to-diffusion edge expression using the supplied card parameters; the model learns its logarithmic residual. The body baseline is 5e−15 × [2−exp(−Vlow/VT)−exp(−Vhigh/VT)] A. This body scale and the junction-coordinate warp are numerical conditioning choices, not exact BSIM body equations. For ON cases, an additional local RBF learns log(|Ig|/|Iedge_source+Iedge_drain|); half of its gate-current change is compensated in each drain/source prediction, preserving the learned channel difference and raw KCL residual. At zero edge voltage, tiny gate-body tunnelling is omitted by this ON gate baseline; its raw-current error remains in boundary diagnostics. The derivation, fixed coefficients and official references are in experiments/physics/RESEARCH.md.')
+        text('For OFF cases, the gate-current baseline is the fixed BSIM gate-to-diffusion edge expression using the supplied card parameters; the model learns its logarithmic residual. The body baseline is 5e−15 × [2−exp(−Vlow/VT)−exp(−Vhigh/VT)] A. This body scale and the junction-coordinate warp are numerical conditioning choices, not exact BSIM body equations. For ON cases, an additional local RBF learns log(|Ig|/|Iedge_source+Iedge_drain|); half of its gate-current change is compensated in each drain/source prediction, preserving the learned channel difference and raw KCL residual. At zero edge voltage, tiny gate-body tunnelling is omitted by this ON gate baseline; its raw-current error remains in boundary diagnostics. The fixed coefficients and current reconstruction are implemented in code/lusr/physics_surrogate.py and code/lusr/smooth_models.py. The BSIM4 manual is the reference for the gate-edge expressions.')
         if (ROOT/'results/selected_boundary_validation.csv').exists():
             boundary=pd.read_csv(ROOT/'results/selected_boundary_validation.csv')
             table(['Selected case','Boundary power MAPE (%)','Boundary median (%)','Boundary p95 (%)'],[
@@ -259,22 +271,27 @@ def main():
     worst_rows=pd.read_csv(ROOT/'results/worst_gate_cases.csv',dtype={'input_bits':str}).head(5)
     table(['Gate / input','Corner','Temperature (°C)','VDD (V)','Absolute relative error (%)'],[
         [r.circuit+' '+r.input_bits,str(r.corner_id),number(r.temp),number(r.vdd),number(100*abs(r.relative_error))]for r in worst_rows.itertuples()])
-    text('The largest-error rows and their corner identifiers are retained in results/worst_gate_cases.csv and worst_circuit_cases.csv. Full corner records provide both polarities’ process values. The scatter below shows association with PVT parameters, not a controlled causal experiment: other sampled parameters vary simultaneously.')
+    text('The largest-error rows and their corner identifiers are retained in results/worst_gate_cases.csv and worst_circuit_cases.csv. Full corner records provide both polarities’ process values.')
+    heading('Why the largest errors occur')
+    text(analysis['report_intro'])
+    table(['Gate / input / corner','Gate error (%)','Dominant OFF device group','Contribution (pp)'],analysis['report_table'],[120,75,220,90])
+    for paragraph in analysis['report_paragraphs']:text(paragraph)
+    page()
+    text('The following scatter shows association with PVT parameters, rather than a controlled causal experiment: other sampled parameters vary simultaneously. The single-device counterfactual above changes only the internal gate bias and therefore tests that particular error mechanism directly.')
     figure('reports/figures/corner_error.png',caption='Each point summarizes 256 complete-circuit patterns at one corner. Color encodes VDD.')
     closure=summary['source_closure']
     text(f'Raw predicted four-current KCL residual: median {number(closure["median_raw_fet_kcl_A"])} A, maximum {number(closure["max_raw_fet_kcl_A"])} A across gate-device queries. Before any clipping (none is applied), {closure["negative_fet_power_count"]} FET predictions and {closure["negative_gate_power_count"]} whole-gate predictions have negative calculated power. Source closure ensures per-device current conservation for energy calculation, but does not enforce passivity or inter-device node balance.')
     text('The principal distribution shift is between uniformly sampled individual terminal voltages and gates, whose conducting transistor terminals often lie extremely close together or to a supply rail. Small-current targets and the wide current dynamic range make raw-space R² insufficient to establish percent accuracy. Errors from individual terminals can be amplified by a low reference leakage; current signs and near-zero denominators are therefore retained rather than concealed.')
-    text('Independent validation artifacts: reports/circuit_reference_validation.json and its script/logs. These checks use separate terminal ammeters and manually assembled gate references to compare transistor dissipated power with external-source power, plus reverse-order/fresh-input parity checks. Numerical verdict: '+str(audit.get('status',audit.get('passed','See detailed validation JSON')))+'.')
+    text('Independent validation artifacts: reports/circuit_reference_validation.json and code/scripts/verify_circuit_references.py. Raw execution logs are regenerated by the numerical pipeline. These checks use separate terminal ammeters and manually assembled gate references to compare transistor dissipated power with external-source power, plus reverse-order/fresh-input parity checks. Numerical verdict: '+str(audit.get('status',audit.get('passed','See detailed validation JSON')))+'.')
     heading('8. Limitations and improvements')
     text('This is a compact-model simulation study, not measured silicon. The assigned predictive model and its ngspice implementation limit physical fidelity. Default diffusion geometry and no extracted interconnect parasitics mean layout leakage and loading are not modeled. The independent ±10% process draws are the assignment’s statistical experiment, not a calibrated foundry process distribution.')
     text('The prescribed Part B method already needs SPICE internal/output voltages at each evaluated gate corner; it is not an entirely SPICE-free node solver. Part C then replaces real inter-stage analog behavior with Boolean states. Consequently a high transistor R² does not imply 99% gate or circuit accuracy.')
     if revised:
-        text('Remaining improvements include better treatment of tiny body currents and signed cancellations, a gate-body residual that remains representable at zero edge voltage, and measured uncertainty on new PVT domains. The physics normalization is specific to the assigned model and is not claimed to transfer unchanged to another technology. Any targeted rail-boundary training would need to remain distinct from the brief’s uniform sampling requirement. An independently validated internal-node solver would be a separate extension. Gate/circuit evaluation currents must remain excluded from fitting and model selection.')
+        text('Remaining improvements include better treatment of tiny body currents and signed cancellations, a gate-body residual that remains representable at zero edge voltage, and measured uncertainty on new PVT domains. The OFF-device checks show that internal gate voltages only a few millivolts away from a rail can materially change leakage; a separate validation set should assess that bias shift while retaining the brief’s fixed gate biases in training. The physics normalization is specific to the assigned model and is not claimed to transfer unchanged to another technology. Any targeted rail-boundary training would need to remain distinct from the brief’s uniform sampling requirement. An independently validated internal-node solver would be a separate extension. Gate/circuit evaluation currents must remain excluded from fitting and model selection.')
     else:
         text('Further work should allocate additional single-device training samples using validation-driven error analysis, improve signed-current representations, and compare smooth kernel regressors under the same held-out protocol. Evaluation gate/circuit currents must remain excluded from training and model selection.')
     heading('9. Reproduction and deliverable map')
-    pipeline='scripts/run_revision.sh' if revised else 'scripts/run_all.sh'
-    text(f'From the project directory, run bash scripts/00_setup.sh, then bash {pipeline}. The setup is local to the project; no system package installation is required. The ordered pipeline samples, simulates devices, trains models, checks trends, simulates gates/circuit, validates references, evaluates hierarchy, builds this report, and checks the final deliverables. Fixed seeds, CSV splits, exact dependency versions and file checksums are included. Cached successful reference simulations are keyed to their inputs and model/executable hashes.')
+    text('From the submission repository root, run bash run.sh setup, then bash run.sh verify. Run bash run.sh reproduce to regenerate the numerical pipeline in code/reproduced/. The artifact paths below are relative to that numerical output directory; shared code is under code/ in the submission repository. The ordered pipeline samples, simulates devices, trains models, checks trends, simulates gates/circuit, validates references, evaluates hierarchy, explains the worst errors, builds this report, and checks the final deliverables. Fixed seeds, CSV splits, exact dependency versions and file checksums are included. Cached successful reference simulations are keyed to their inputs and model/executable hashes. The submitted editable report is reports/main.tex; bash run.sh report compiles that LaTeX source separately.')
     table(['Deliverable','Location'],[
         [f'Four {count:,}-row datasets','data/transistors/{case}.csv'],['Fixed partitions and 200 corners','data/splits/ and data/corners.csv'],
         ['Example decks','netlists/transistors/, netlists/gates/, netlists/circuit/parity8.cir'],
@@ -282,7 +299,8 @@ def main():
         ['Four saved models','models/{case}.joblib'],['Held-out currents and metrics','results/test_predictions/ and transistor_test*.csv'],
         ['18-case gate table and predictions','results/gate_metrics.csv and gate_predictions.csv'],
         ['51,200 circuit predictions / 256-vector table','results/circuit_predictions.csv and circuit_metrics_by_vector.csv'],
-        ['Source code / environment','lusr/, scripts/, requirements.lock.txt, docs/setup.md'],
+        ['Worst-error explanation','results/error_analysis.json, reports/error_analysis.tex; code/scripts/15_explain_worst_cases.py'],
+        ['Source code / environment','code/lusr/, code/scripts/, code/requirements.lock.txt (submission-root paths)'],
         ['Typed report / figures','reports/LUSR_8bit_Parity_Leakage_Report.pdf and .md; reports/figures/']],[185,320])
     heading('References')
     for ref in [

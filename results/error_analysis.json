@@ -1,0 +1,586 @@
+{
+  "schema_version": 1,
+  "status": "PASSED",
+  "evaluation_only": true,
+  "simulator": "******\n** ngspice-42 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2023, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Sun Mar 31 20:15:14 UTC 2024\n******",
+  "simulator_sha256": "820658317b0b54035208da41936fd6871ce924036e5ea4113a4168b821b7fc45",
+  "assigned_model_sha256": "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e",
+  "analysis_source_sha256": "64b302e32bb758d129bef491c9324e192b3dd21dd6ee394bad5edca0f509cc71",
+  "input_sha256": {
+    "results/ml_manifest.json": "154295ab3021623c7d20ea61c3c08d8f475ab4c889d07d1af93184a6c8bb2077",
+    "results/gate_predictions.csv": "53cffff70f53dfc9cf43b8e167dcbf818f127076657323f7a7db65cd9ca23211",
+    "results/gate_transistor_predictions.csv": "15d5a19c0068e2bee74ed03bf2b7182eca60a5fba37d3e43f7e0b1d46920463c",
+    "results/circuit_predictions.csv": "984e5ea0fc12eeb8dca1666f584df40794f3df15e1961016a45135b923342a34",
+    "data/corners.csv": "efb20e398046afb957fbc70de700467e55f098446c6499f267828abe7cd0a9c3",
+    "data/transistors/nmos_on.csv": "4ac61688d602221457b142e9bc02d501b1dae4298e2041b2b070e89d4cd15324",
+    "data/transistors/nmos_off.csv": "7f5f7f72b1f186f5580a78aeb162df30d2ec81281ad98aedd23b660b13a99e99",
+    "data/transistors/pmos_on.csv": "ca8deb9e45b2c28cb4ced34b1e65e0c4da518cf04648919893fff559a58c878f",
+    "data/transistors/pmos_off.csv": "5134fb770f0fd1438a46ae9b46056e2df9b810ad4d108a85d4464f14eb042122",
+    "results/test_predictions/nmos_off.csv": "912668970268515d89e38cb3b35da25dbc9206f864535e73877807befbba8054",
+    "results/test_predictions/pmos_off.csv": "3b207e31add076ad802462fc3c23ccca85bab8ea624e130d6d4c8600190c770a"
+  },
+  "fresh_single_fet_simulations": 429,
+  "training_reference_checks": [
+    {
+      "case": "nmos_on",
+      "row_index": 0,
+      "max_absolute_difference_A": 8.131516293641283e-20
+    },
+    {
+      "case": "nmos_on",
+      "row_index": 50000,
+      "max_absolute_difference_A": 0.0
+    },
+    {
+      "case": "nmos_on",
+      "row_index": 99999,
+      "max_absolute_difference_A": 0.0
+    },
+    {
+      "case": "nmos_off",
+      "row_index": 0,
+      "max_absolute_difference_A": 4.1359030627651384e-25
+    },
+    {
+      "case": "nmos_off",
+      "row_index": 50000,
+      "max_absolute_difference_A": 3.7223127564886245e-24
+    },
+    {
+      "case": "nmos_off",
+      "row_index": 99999,
+      "max_absolute_difference_A": 1.6543612251060553e-24
+    },
+    {
+      "case": "pmos_on",
+      "row_index": 0,
+      "max_absolute_difference_A": 1.0408340855860843e-17
+    },
+    {
+      "case": "pmos_on",
+      "row_index": 50000,
+      "max_absolute_difference_A": 1.0164395367051604e-20
+    },
+    {
+      "case": "pmos_on",
+      "row_index": 99999,
+      "max_absolute_difference_A": 1.3552527156068805e-20
+    },
+    {
+      "case": "pmos_off",
+      "row_index": 0,
+      "max_absolute_difference_A": 4.1359030627651384e-24
+    },
+    {
+      "case": "pmos_off",
+      "row_index": 50000,
+      "max_absolute_difference_A": 1.5302841332231012e-23
+    },
+    {
+      "case": "pmos_off",
+      "row_index": 99999,
+      "max_absolute_difference_A": 3.360421238496675e-25
+    }
+  ],
+  "worst_gates": [
+    {
+      "gate_row": 1706,
+      "gate": "OR2",
+      "input_bits": "00",
+      "corner_id": 94,
+      "signed_error_percent": -4.233017160505975,
+      "fresh_power_sum_relative_error": 1.1791484717456838e-09,
+      "dominant_case": "pmos_off",
+      "dominant_contribution_pp": -4.003841313309452,
+      "devices": [
+        {
+          "device": "g_na",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 3.128643652206744e-07,
+            "ig": -2.2859360545537038e-08,
+            "is": -2.9000498973911144e-07,
+            "ib": -1.4936025866552805e-14
+          },
+          "spice_power_W": 2.9862421554678915e-07,
+          "ml_power_W": 2.975927823375002e-07,
+          "leakage_share_percent": 19.562300209059735,
+          "device_error_percent": -0.3453950334872726,
+          "gate_error_contribution_pp": -0.06756721335796267
+        },
+        {
+          "device": "g_nb",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 3.128643652206744e-07,
+            "ig": -2.2859360545537038e-08,
+            "is": -2.9000498973911144e-07,
+            "ib": -1.4936025866552805e-14
+          },
+          "spice_power_W": 2.9862421554678915e-07,
+          "ml_power_W": 2.975927823375002e-07,
+          "leakage_share_percent": 19.562300209059735,
+          "device_error_percent": -0.3453950334872726,
+          "gate_error_contribution_pp": -0.06756721335796267
+        },
+        {
+          "device": "g_pa",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -9.351863758620781e-07,
+            "ig": -2.1946627236321537e-07,
+            "is": 1.118818549323576e-06,
+            "ib": 3.5834098906922796e-08
+          },
+          "spice_power_W": 2.1603722181719245e-07,
+          "ml_power_W": 2.1540797156189396e-07,
+          "leakage_share_percent": 14.152184483032924,
+          "device_error_percent": -0.29126937016018056,
+          "gate_error_contribution_pp": -0.0412209786076368
+        },
+        {
+          "device": "g_pb",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -7.544934163857335e-07,
+            "ig": -2.146017857806723e-07,
+            "is": 9.351863758619562e-07,
+            "ib": 3.390882630585623e-08
+          },
+          "spice_power_W": 2.0891732275021567e-07,
+          "ml_power_W": 2.084447196966797e-07,
+          "leakage_share_percent": 13.685773536581795,
+          "device_error_percent": -0.22621535031875886,
+          "gate_error_contribution_pp": -0.0309593205496105
+        },
+        {
+          "device": "g_ni",
+          "case": "nmos_on",
+          "spice_currents_A": {
+            "id": 4.30635355534737e-07,
+            "ig": 9.402583733830738e-08,
+            "is": -5.186597930250705e-07,
+            "ib": -6.001399814163577e-09
+          },
+          "spice_power_W": 9.033703550377314e-08,
+          "ml_power_W": 9.000331731375346e-08,
+          "leakage_share_percent": 5.917806113899726,
+          "device_error_percent": -0.3694145907696347,
+          "gate_error_contribution_pp": -0.02186123923820309
+        },
+        {
+          "device": "g_pi",
+          "case": "pmos_off",
+          "spice_currents_A": {
+            "id": -4.3063535553469874e-07,
+            "ig": 3.473885090699014e-08,
+            "is": 3.9589647310457893e-07,
+            "ib": 3.1922381404925204e-14
+          },
+          "spice_power_W": 4.139891429099331e-07,
+          "ml_power_W": 3.528693380514466e-07,
+          "leakage_share_percent": 27.11963556628093,
+          "device_error_percent": -14.763625062453304,
+          "gate_error_contribution_pp": -4.003841313309452
+        }
+      ]
+    },
+    {
+      "gate_row": 1400,
+      "gate": "OR2",
+      "input_bits": "00",
+      "corner_id": 77,
+      "signed_error_percent": -3.332318847841085,
+      "fresh_power_sum_relative_error": 2.001228698107692e-10,
+      "dominant_case": "pmos_off",
+      "dominant_contribution_pp": -2.9916809987938753,
+      "devices": [
+        {
+          "device": "g_na",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 2.063436964485695e-07,
+            "ig": -2.159911338915639e-08,
+            "is": -1.8474454824109107e-07,
+            "ib": -3.481832203251924e-14
+          },
+          "spice_power_W": 2.0129039035995444e-07,
+          "ml_power_W": 2.0001170854978858e-07,
+          "leakage_share_percent": 18.317590717714403,
+          "device_error_percent": -0.6352423520463563,
+          "gate_error_contribution_pp": -0.11636109411343401
+        },
+        {
+          "device": "g_nb",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 2.063436964485695e-07,
+            "ig": -2.159911338915639e-08,
+            "is": -1.8474454824109107e-07,
+            "ib": -3.481832203251924e-14
+          },
+          "spice_power_W": 2.0129039035995444e-07,
+          "ml_power_W": 2.0001170854978858e-07,
+          "leakage_share_percent": 18.317590717714403,
+          "device_error_percent": -0.6352423520463563,
+          "gate_error_contribution_pp": -0.11636109411343401
+        },
+        {
+          "device": "g_pa",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -6.270399767011826e-07,
+            "ig": -1.3151057739953503e-07,
+            "is": 7.342763482807383e-07,
+            "ib": 2.4274205832897078e-08
+          },
+          "spice_power_W": 1.3112987005060777e-07,
+          "ml_power_W": 1.3065329087353536e-07,
+          "leakage_share_percent": 11.932925790241645,
+          "device_error_percent": -0.3634405928172481,
+          "gate_error_contribution_pp": -0.043369096232496525
+        },
+        {
+          "device": "g_pb",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -5.209503420630457e-07,
+            "ig": -1.294600881973912e-07,
+            "is": 6.270399767012624e-07,
+            "ib": 2.3370453572368888e-08
+          },
+          "spice_power_W": 1.2815767339514088e-07,
+          "ml_power_W": 1.2774619313751847e-07,
+          "leakage_share_percent": 11.662453455372384,
+          "device_error_percent": -0.32107344548438804,
+          "gate_error_contribution_pp": -0.03744504113717718
+        },
+        {
+          "device": "g_ni",
+          "case": "nmos_on",
+          "spice_currents_A": {
+            "id": 3.5806238375289194e-07,
+            "ig": 8.784771887704323e-08,
+            "is": -4.40502184865245e-07,
+            "ib": -5.407917935322786e-09
+          },
+          "spice_power_W": 8.61515383898065e-08,
+          "ml_power_W": 8.585372191671862e-08,
+          "leakage_share_percent": 7.83986069630022,
+          "device_error_percent": -0.34568909465129743,
+          "gate_error_contribution_pp": -0.027101543462963135
+        },
+        {
+          "device": "g_pi",
+          "case": "pmos_off",
+          "spice_currents_A": {
+            "id": -3.580623837529219e-07,
+            "ig": 2.0415230395087747e-08,
+            "is": 3.3764712382503953e-07,
+            "ib": 2.939662402390297e-14
+          },
+          "spice_power_W": 3.5087132625996935e-07,
+          "ml_power_W": 3.17996007373337e-07,
+          "leakage_share_percent": 31.92957864266924,
+          "device_error_percent": -9.369622544269747,
+          "gate_error_contribution_pp": -2.9916809987938753
+        }
+      ]
+    },
+    {
+      "gate_row": 292,
+      "gate": "INV",
+      "input_bits": "0",
+      "corner_id": 16,
+      "signed_error_percent": 3.1163752513236793,
+      "fresh_power_sum_relative_error": -2.533510489957192e-10,
+      "dominant_case": "nmos_off",
+      "dominant_contribution_pp": 3.046245887513755,
+      "devices": [
+        {
+          "device": "g_n",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 3.968278734058634e-08,
+            "ig": -2.2067661489900878e-08,
+            "is": -1.7615094745258464e-08,
+            "ib": -3.110542699604506e-14
+          },
+          "spice_power_W": 3.8718236702297124e-08,
+          "ml_power_W": 4.043907040685125e-08,
+          "leakage_share_percent": 68.53960903602636,
+          "device_error_percent": 4.444504324371855,
+          "gate_error_contribution_pp": 3.046245887513755
+        },
+        {
+          "device": "g_p",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -3.9682787300719454e-08,
+            "ig": -1.8203934095825434e-08,
+            "is": 5.658746685153798e-08,
+            "ib": 1.2992545442291892e-09
+          },
+          "spice_power_W": 1.7772071948480867e-08,
+          "ml_power_W": 1.7811688256873833e-08,
+          "leakage_share_percent": 31.460390938638525,
+          "device_error_percent": 0.2229132793734389,
+          "gate_error_contribution_pp": 0.07012938914502335
+        }
+      ]
+    },
+    {
+      "gate_row": 298,
+      "gate": "NOR2",
+      "input_bits": "00",
+      "corner_id": 16,
+      "signed_error_percent": 3.1059164279856404,
+      "fresh_power_sum_relative_error": -2.7216752916858516e-10,
+      "dominant_case": "nmos_off",
+      "dominant_contribution_pp": 3.0355400825974477,
+      "devices": [
+        {
+          "device": "g_na",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 3.961319300226044e-08,
+            "ig": -2.202771296394317e-08,
+            "is": -1.758545051057007e-08,
+            "ib": -2.952774718207609e-14
+          },
+          "spice_power_W": 3.86285901111943e-08,
+          "ml_power_W": 4.034082883376958e-08,
+          "leakage_share_percent": 34.24132163078167,
+          "device_error_percent": 4.432568513752417,
+          "gate_error_contribution_pp": 1.5177700412987238
+        },
+        {
+          "device": "g_nb",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 3.961319300226044e-08,
+            "ig": -2.202771296394317e-08,
+            "is": -1.758545051057007e-08,
+            "ib": -2.952774718207609e-14
+          },
+          "spice_power_W": 3.86285901111943e-08,
+          "ml_power_W": 4.034082883376958e-08,
+          "leakage_share_percent": 34.24132163078167,
+          "device_error_percent": 4.432568513752417,
+          "gate_error_contribution_pp": 1.5177700412987238
+        },
+        {
+          "device": "g_pa",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -9.610676745274887e-08,
+            "ig": -1.8203358150660264e-08,
+            "is": 1.1301046969336977e-07,
+            "ib": 1.2996559176081668e-09
+          },
+          "spice_power_W": 1.780251202636635e-08,
+          "ml_power_W": 1.7840659612996342e-08,
+          "leakage_share_percent": 15.78057957528241,
+          "device_error_percent": 0.2142820438682718,
+          "gate_error_contribution_pp": 0.0338149484481742
+        },
+        {
+          "device": "g_pb",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -7.92263860042729e-08,
+            "ig": -1.8171722316872537e-08,
+            "is": 9.61067674524818e-08,
+            "ib": 1.291340884918002e-09
+          },
+          "spice_power_W": 1.7753097272649488e-08,
+          "ml_power_W": 1.7794343235140734e-08,
+          "leakage_share_percent": 15.736777135937501,
+          "device_error_percent": 0.23233107923533933,
+          "gate_error_contribution_pp": 0.03656142415678372
+        }
+      ]
+    },
+    {
+      "gate_row": 842,
+      "gate": "OR2",
+      "input_bits": "00",
+      "corner_id": 46,
+      "signed_error_percent": -3.0946553863799324,
+      "fresh_power_sum_relative_error": -9.59460766965618e-10,
+      "dominant_case": "pmos_off",
+      "dominant_contribution_pp": -2.023336077843425,
+      "devices": [
+        {
+          "device": "g_na",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 1.8389201650863804e-07,
+            "ig": -2.4458824073506245e-08,
+            "is": -1.5943318115261751e-07,
+            "ib": -1.1282514292764216e-14
+          },
+          "spice_power_W": 1.7222674335645141e-07,
+          "ml_power_W": 1.6791938109664367e-07,
+          "leakage_share_percent": 21.58226549786222,
+          "device_error_percent": -2.5009833988981343,
+          "gate_error_contribution_pp": -0.5397688772076539
+        },
+        {
+          "device": "g_nb",
+          "case": "nmos_off",
+          "spice_currents_A": {
+            "id": 1.8389201650863804e-07,
+            "ig": -2.4458824073506245e-08,
+            "is": -1.5943318115261751e-07,
+            "ib": -1.1282514292764216e-14
+          },
+          "spice_power_W": 1.7222674335645141e-07,
+          "ml_power_W": 1.6791938109664367e-07,
+          "leakage_share_percent": 21.58226549786222,
+          "device_error_percent": -2.5009833988981343,
+          "gate_error_contribution_pp": -0.5397688772076539
+        },
+        {
+          "device": "g_pa",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -5.833123715943853e-07,
+            "ig": -1.1212389484199988e-07,
+            "is": 6.847332205569835e-07,
+            "ib": 1.0703045883603268e-08
+          },
+          "spice_power_W": 1.0770246952318765e-07,
+          "ml_power_W": 1.0768912031600771e-07,
+          "leakage_share_percent": 13.496529323636997,
+          "device_error_percent": -0.012394522835957144,
+          "gate_error_contribution_pp": -0.00167283040907984
+        },
+        {
+          "device": "g_pb",
+          "case": "pmos_on",
+          "spice_currents_A": {
+            "id": -4.830727574777161e-07,
+            "ig": -1.1050533411689088e-07,
+            "is": 5.833123715944353e-07,
+            "ib": 1.0265720013641344e-08
+          },
+          "spice_power_W": 1.0523207420257168e-07,
+          "ml_power_W": 1.0523330724809168e-07,
+          "leakage_share_percent": 13.186956450951001,
+          "device_error_percent": 0.0011717392528310968,
+          "gate_error_contribution_pp": 0.0001545167449895354
+        },
+        {
+          "device": "g_ni",
+          "case": "nmos_on",
+          "spice_currents_A": {
+            "id": 1.6167104437776951e-07,
+            "ig": 9.429690694950921e-08,
+            "is": -2.5233050656331875e-07,
+            "ib": -3.637444410422734e-09
+          },
+          "spice_power_W": 8.84159499636717e-08,
+          "ml_power_W": 8.84936501898858e-08,
+          "leakage_share_percent": 11.079675950280834,
+          "device_error_percent": 0.08788032730069222,
+          "gate_error_contribution_pp": 0.009736855488962878
+        },
+        {
+          "device": "g_pi",
+          "case": "pmos_off",
+          "spice_currents_A": {
+            "id": -1.6167104437776427e-07,
+            "ig": 2.0991817173410254e-08,
+            "is": 1.4067921220680755e-07,
+            "ib": 1.5459855617905305e-14
+          },
+          "spice_power_W": 1.5219724522556012e-07,
+          "ml_power_W": 1.3605099851030654e-07,
+          "leakage_share_percent": 19.072307183460648,
+          "device_error_percent": -10.608764101692143,
+          "gate_error_contribution_pp": -2.023336077843425
+        }
+      ]
+    }
+  ],
+  "or2_00_gate_bias_check": {
+    "corners": 200,
+    "median_gate_sag_mV": 1.312906587026763,
+    "maximum_gate_sag_mV": 8.954750790174714,
+    "median_true_power_increase_percent": 2.7033703363160377,
+    "maximum_true_power_increase_percent": 17.170248072591697,
+    "median_actual_bias_model_error_percent": -2.7578473602477183,
+    "median_rail_bias_model_error_percent": 0.04761216015021229,
+    "sag_temperature_spearman": 0.6400165004125105
+  },
+  "off_test_power_errors": {
+    "nmos_off": {
+      "rows": 15000,
+      "p95_power_error_percent": 0.4829420376955726,
+      "p99_power_error_percent": 1.1670131908265753,
+      "power_error_above_4_4_percent_count": 4
+    },
+    "pmos_off": {
+      "rows": 15000,
+      "p95_power_error_percent": 0.6373730176541246,
+      "p99_power_error_percent": 1.5201709390245992,
+      "power_error_above_4_4_percent_count": 3
+    }
+  },
+  "nmos_local_outlier": {
+    "corner_id": 16,
+    "toxe_corner_percentile": 14.499999999999998,
+    "vdd_corner_percentile": 93.0,
+    "device_error_percent": 4.444504324371855,
+    "leakage_share_percent": 68.53960903602636
+  },
+  "worst_circuit": {
+    "corner_id": 94,
+    "vector": 127,
+    "input_bits": "01111111",
+    "temp_C": 124.50441990426353,
+    "vdd_V": 0.9634393413767659,
+    "total_error_percent": -3.1016755212215807,
+    "surrogate_contribution_pp": -0.26425882520395755,
+    "composition_contribution_pp": -2.8374166960176233
+  },
+  "report_intro": "Fresh single-FET simulations at the recorded in-gate biases reconstruct each of the five worst gates' SPICE powers. The table attributes signed gate error to the dominant OFF-device group. Contributions are percentage points of whole-gate error; they include each group's leakage share.",
+  "report_table": [
+    [
+      "OR2 00 / 94",
+      "-4.233",
+      "Output-inverter PMOS",
+      "-4.004"
+    ],
+    [
+      "OR2 00 / 77",
+      "-3.332",
+      "Output-inverter PMOS",
+      "-2.992"
+    ],
+    [
+      "INV 0 / 16",
+      "+3.116",
+      "NMOS",
+      "+3.046"
+    ],
+    [
+      "NOR2 00 / 16",
+      "+3.106",
+      "Two NMOS",
+      "+3.036"
+    ],
+    [
+      "OR2 00 / 46",
+      "-3.095",
+      "Output-inverter PMOS",
+      "-2.023"
+    ]
+  ],
+  "report_paragraphs": [
+    "OR2 00: the NOR output drives the output-inverter OFF PMOS gate below VDD. Across 200 corners this shortfall has median 1.31 mV and maximum 8.95 mV. Changing only that gate voltage back to VDD in fresh single-FET simulations shows that the shortfall raises its true power by a median 2.70% and up to 17.17%. The frozen model's median signed error is +0.05% at the prescribed rail bias, but -2.76% at the actual internal-node bias. OFF training fixes the gate at its prescribed rail; the learned OFF channel features omit gate-voltage variation. This explains the systematic underprediction, especially at hot corners.",
+    "INV 0 and NOR2 00 at corner 16: the OFF NMOS group supplies approximately 68.5% of the gate leakage and is overpredicted by about 4.44% per device, despite an exactly 0 V gate bias. This is a local regression outlier rather than the OR2 gate-bias mechanism. Only 4 of the 15,000 held-out NMOS OFF power predictions exceed 4.4% error. This corner combines relatively thin NMOS oxide (lower 14.5% of corners) with high VDD (upper 7% of corners). The separate causal effect of those process parameters has not been isolated.",
+    "Complete parity checker: the worst row is input 01111111, corner 94 at 124.5 degrees C, with signed error -3.102%. Relative to the same full-circuit SPICE reference, the frozen surrogate contributes -0.264 percentage points and replacing the connected circuit by standalone ideal-input gates contributes -2.837 percentage points. These contributions sum to the total error. Thus the prescribed ideal-input/no-loading hierarchy dominates this circuit outlier. This diagnostic uses existing gate and complete-circuit references only for evaluation; it does not change any ML prediction."
+  ]
+}

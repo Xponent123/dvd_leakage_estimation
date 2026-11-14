@@ -1,6 +1,6 @@
 {
   "status": "PASSED",
-  "checksummed_files": 101,
+  "checksummed_files": 104,
   "transistors": {
     "nmos_on": {
       "rows": 100000,
@@ -82,6 +82,12 @@
     "mean_error_percent": 0.5103177523475756,
     "mean_accuracy_percent": 99.48968224765242,
     "r2": 0.999593649571075
+  },
+  "error_analysis": {
+    "status": "PASSED",
+    "gate_attributions": 5,
+    "controlled_bias_corners": 200,
+    "fresh_single_fet_simulations": 429
   },
   "hierarchy": "PASS: per-transistor gate energy and all 256-vector gate sums",
   "report": "PASS: LaTeX sources, figures and compiled PDF"

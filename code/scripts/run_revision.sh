@@ -48,9 +48,12 @@ cp docs/design_decisions.json "$REVISION_ROOT/docs/design_decisions.json"
 if [[ ! -f "$REVISION_ROOT/README.md" ]]; then
     printf '%s\n' '# Regenerated numerical deliverables' > "$REVISION_ROOT/README.md"
 fi
-"$PYTHON" scripts/04_data_checks.py --data "$REVISION_ROOT/data/transistors" --output "$REVISION_ROOT/reports/data_checks" --expected-rows 100000
+REVISION_ROWS="$("$PYTHON" -c 'import json,sys; print(*sorted({d["rows"] for d in json.load(open(sys.argv[1]))["datasets"].values()}))' "$REVISION_ROOT/data/input_manifest.json")"
+[[ "$REVISION_ROWS" =~ ^[0-9]+$ ]] || { echo "Revision datasets do not share one row count: $REVISION_ROWS" >&2; exit 1; }
+"$PYTHON" scripts/04_data_checks.py --data "$REVISION_ROOT/data/transistors" --output "$REVISION_ROOT/reports/data_checks" --expected-rows "$REVISION_ROWS"
 "$PYTHON" scripts/05_simulate_gates_circuit.py --output-root "$REVISION_ROOT" --corners 200 --workers 3
 "$PYTHON" scripts/verify_circuit_references.py --output-root "$REVISION_ROOT"
 "$PYTHON" scripts/06_evaluate_hierarchy.py --output-root "$REVISION_ROOT"
+"$PYTHON" scripts/15_explain_worst_cases.py --output-root "$REVISION_ROOT"
 "$PYTHON" scripts/07_build_report.py --output-root "$REVISION_ROOT"
 "$PYTHON" scripts/08_validate_deliverables.py --output-root "$REVISION_ROOT"

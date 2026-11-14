@@ -11,6 +11,7 @@ import argparse
 import csv
 import hashlib
 import io
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -208,6 +209,10 @@ def verify():
         require(np.allclose(predicted,observed.ml_leakage_A,rtol=1e-12,atol=1e-22),'Part C hierarchical gate sum')
     check_hash('reports/data_checks/trends.csv',load('reports/data_checks/trend_manifest.json')['csv_sha256'])
     require(len(frame('reports/data_checks/trends.csv'))==246,'Controlled trend points')
+    specification = importlib.util.spec_from_file_location('error_analysis', ROOT/'code/scripts/15_explain_worst_cases.py')
+    explanation = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(explanation)
+    result['error_analysis'] = explanation.validate_artifacts(ROOT)
     decks = {**{f'transistors/{c}':1 for c in CASES}, **{f'gates/{g}':n for g,n in [('inv',2),('nand2',4),('nor2',4),('and2',6),('or2',6)]}, 'circuit/parity8':112}
     for name,count in decks.items():
         text = (ROOT/f'netlists/{name}.cir').read_text()
@@ -215,11 +220,14 @@ def verify():
         if name.startswith('transistors/'):
             require(all(re.search(rf'(?im)^V{t}\s+{t}\s+0\s',text) for t in 'dgsb'),f'Terminal voltage sources: {name}')
     tex = (ROOT/'reports/main.tex').read_text()
+    for included in re.findall(r'\\input\{([^}]+)\}', tex):
+        require((ROOT/'reports'/included).is_file(),f'Missing LaTeX input: {included}')
     for image in re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}',tex):
         require((ROOT/'reports'/image).is_file(),f'Missing LaTeX figure: {image}')
     pdf_text = subprocess.run(['pdftotext',str(ROOT/'reports/LUSR_8bit_Parity_Leakage_Report.pdf'),'-'],capture_output=True,text=True,check=True).stdout
     require(len(pdf_text)>10000 and all(t in pdf_text for t in ('400,000','51,200','99.6350','99.4897')), 'Report counts/results')
     require(not re.search(r'\b(TODO|TBD|FIXME)\b|\[placeholder\]', pdf_text), 'Unfinished report')
+    require('Why the largest errors occur' in pdf_text and 'percentage points' in pdf_text, 'Missing required worst-error explanation')
     result['hierarchy'] = 'PASS: per-transistor gate energy and all 256-vector gate sums'
     result['report'] = 'PASS: LaTeX sources, figures and compiled PDF'
     return result

@@ -9,6 +9,7 @@ import argparse
 import csv
 from datetime import datetime
 import json
+import importlib.util
 import math
 from pathlib import Path
 import re
@@ -23,7 +24,7 @@ from lusr.spice import CASES, CURRENT_COLUMNS, DEFAULT_MODEL, INPUT_COLUMNS, OPT
 
 ORIGINAL_MODEL_SHA256 = "56710120d5a2ae9e32a1908e1ee29a98f692a1dec0501eed8976ea6e6bea021e"
 BASELINE_FAMILIES = {"random_forest", "extra_trees", "hist_gradient_boosting", "mlp"}
-SHARED_FILES = ("requirements.lock.txt", "scripts/run_revision.sh")
+SHARED_FILES = ("requirements.lock.txt", "scripts/run_revision.sh", "scripts/15_explain_worst_cases.py")
 GATE_COUNTS = {"INV": 2, "NAND2": 4, "NOR2": 4, "AND2": 4, "OR2": 4}
 REPORT = "reports/LUSR_8bit_Parity_Leakage_Report"
 
@@ -64,7 +65,8 @@ def inventory():
              "results/transistor_test_metrics.csv", "results/transistor_test_terminals.csv",
              "data/gates/reference.csv", "data/circuit/reference.csv", "results/gate_predictions.csv",
              "results/circuit_predictions.csv", "results/gate_metrics.csv", "results/circuit_metrics_by_vector.csv",
-             "results/hierarchy_summary.json", REPORT+".pdf", REPORT+".md", "netlists/circuit/parity8.cir"]
+             "results/hierarchy_summary.json", "results/error_analysis.json", "reports/error_analysis.tex",
+             REPORT+".pdf", REPORT+".md", "netlists/circuit/parity8.cir"]
     for case in CASES:
         files += [f"data/inputs/{case}_inputs.csv", f"data/splits/{case}_split.csv", f"data/transistors/{case}.csv",
                   f"models/{case}.joblib", f"results/test_predictions/{case}.csv", f"netlists/transistors/{case}.cir",
@@ -231,6 +233,10 @@ def audit():
         if "/transistors/" in relative:
             require(all(re.search(rf"(?im)^V{t}\s+{t}\s+0\s", text) for t in "dgsb"), f"Missing independent terminal source: {relative}")
     checks["netlist_device_counts"] = netlist_counts
+    specification = importlib.util.spec_from_file_location('error_analysis', SOURCE_ROOT/'scripts/15_explain_worst_cases.py')
+    explanation = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(explanation)
+    checks['error_analysis'] = explanation.validate_artifacts(ROOT)
     extractor = shutil.which("pdftotext")
     require(extractor is not None, "pdftotext is required for final report validation")
     pdf_text = subprocess.run([extractor, str(ROOT/(REPORT+".pdf")), "-"], capture_output=True, text=True, check=True).stdout
