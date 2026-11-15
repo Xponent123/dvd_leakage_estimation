@@ -9,9 +9,9 @@ if [[ "$REVISION_ROOT" != "$PWD/"* ]]; then
 fi
 PYTHON="$PWD/.venv/bin/python"
 export MPLCONFIGDIR="$PWD/.cache/matplotlib"
-mkdir -p "$REVISION_ROOT/logs" "$REVISION_ROOT/docs"
+mkdir -p "$REVISION_ROOT/logs"
 
-# An existing frozen run is immutable. It can be validated/reported or resumed
+# An existing frozen run is immutable. It can be resumed
 # after interruption using the identical model, source, data and validation hashes.
 if [[ ! -f "$REVISION_ROOT/results/ml_manifest.json" ]]; then
     "$PYTHON" scripts/01_prepare_inputs.py --samples 100000 --seed 20261024 --output "$REVISION_ROOT/data"
@@ -44,7 +44,6 @@ REVISION_STATUS="$("$PYTHON" -c 'import json,sys;print(json.load(open(sys.argv[1
 if [[ "$REVISION_STATUS" != COMPLETED ]]; then
     "$PYTHON" scripts/11_finalize_revision.py --output-root "$REVISION_ROOT" --evaluate-only --jobs 2
 fi
-cp docs/design_decisions.json "$REVISION_ROOT/docs/design_decisions.json"
 if [[ ! -f "$REVISION_ROOT/README.md" ]]; then
     printf '%s\n' '# Regenerated numerical deliverables' > "$REVISION_ROOT/README.md"
 fi
@@ -55,5 +54,4 @@ REVISION_ROWS="$("$PYTHON" -c 'import json,sys; print(*sorted({d["rows"] for d i
 "$PYTHON" scripts/verify_circuit_references.py --output-root "$REVISION_ROOT"
 "$PYTHON" scripts/06_evaluate_hierarchy.py --output-root "$REVISION_ROOT"
 "$PYTHON" scripts/15_explain_worst_cases.py --output-root "$REVISION_ROOT"
-"$PYTHON" scripts/07_build_report.py --output-root "$REVISION_ROOT"
-"$PYTHON" scripts/08_validate_deliverables.py --output-root "$REVISION_ROOT"
+"$PYTHON" scripts/09_transistor_parity_plots.py --output-root "$REVISION_ROOT"

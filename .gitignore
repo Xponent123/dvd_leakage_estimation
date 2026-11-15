@@ -5,9 +5,4 @@ code/.cache/
 code/tools/
 code/reproduced/
 code/experiments/physics/boundary_validation/
-reports/*.aux
-reports/*.log
-reports/*.out
-reports/*.fls
-reports/*.fdb_latexmk
 logs/
