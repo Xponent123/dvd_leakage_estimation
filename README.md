@@ -1,6 +1,7 @@
 # ML-driven PVT-aware leakage estimation
 
-**Team 8 — LUSR:** Dhimant Bhuva, Jal Parikh, Garima Mittal, Krishna Goel.  
+**Team 8:** Dhimant Bhuva (2023102063), Jal Parikh (2023102066), Garima Mittal (2023102069), Krishna Goel (2023112009).  
+**Repository:** https://github.com/Xponent123/dvd_leakage_estimation  
 **Assignment:** 32nm_MGK, nominal VDD 0.9 V, 8-bit parity checker.
 
 The submission contains the final measured datasets, four selected transistor models, all required netlists, evaluation tables and plots, reproduction code, and an editable LaTeX report.
@@ -18,18 +19,18 @@ Mean accuracy is `100 × (1 − mean absolute relative error)`, with a `1e-18 A`
 |---|---|
 | 1. Four transistor datasets | [data/transistors/](data/transistors/) — 100,000 rows per case; all 16 required columns |
 | 2. Example netlists | [netlists/](netlists/) — four single-FET cases, five complete gates, and complete parity checker |
-| 3. Kirchhoff check and three trend plots | [reports/data_checks/](reports/data_checks/) |
+| 3. Kirchhoff check and three trend plots | [reports/data_checks/](reports/data_checks/); dataset scatter trends in [results/analysis/dataset_trends.txt](results/analysis/dataset_trends.txt) and [reports/figures/analysis/trends_dataset.png](reports/figures/analysis/trends_dataset.png) |
 | 4. Four model families × four cases | [results/transistor_validation_models.csv](results/transistor_validation_models.csv) |
 | 5. Selected-model test metrics, four parity plots and four saved models | [results/transistor_test_metrics.csv](results/transistor_test_metrics.csv), [results/transistor_test_terminals.csv](results/transistor_test_terminals.csv), [reports/figures/](reports/figures/), [models/](models/) |
 | 6. All 18 gate/input-case metrics | [results/gate_metrics.csv](results/gate_metrics.csv) |
 | 7. Gate parity plot on log axes | [reports/figures/gate_parity.png](reports/figures/gate_parity.png) |
 | 8. Test-circuit metrics and parity plot | [results/hierarchy_summary.json](results/hierarchy_summary.json), [results/circuit_metrics_by_vector.csv](results/circuit_metrics_by_vector.csv), [reports/figures/circuit_parity.png](reports/figures/circuit_parity.png) |
 | 9. Ordered fixed-seed regeneration code | [run.sh](run.sh), [code/scripts/](code/scripts/), [code/lusr/](code/lusr/) |
-| 10. Typed report | [PDF](reports/LUSR_8bit_Parity_Leakage_Report.pdf) and [editable LaTeX](reports/main.tex) |
+| 10. Typed report | [PDF](reports/ML_Leakage_Estimation_Report.pdf) and [editable LaTeX](reports/main.tex) (with `reports/sections/` and `reports/tables/`) |
 
-The report's worst-error explanation is supported by [evaluation-only checks](results/error_analysis.json): fresh single-FET attribution of the five largest gate errors, a controlled internal-gate-bias check, and decomposition of the worst parity error into surrogate and gate-composition contributions. The reproduction pipeline regenerates this evidence and [the included LaTeX explanation](reports/error_analysis.tex) before building the report.
+The report's worst-error explanation is supported by [evaluation-only checks](results/error_analysis.json): fresh single-FET attribution of the five largest gate errors, a controlled internal-gate-bias check, and decomposition of the worst parity error into surrogate and gate-composition contributions. The reproduction pipeline regenerates this evidence and [the generated LaTeX explanation](reports/error_analysis.tex) (kept as hash-checked evidence; the report text itself is in `reports/sections/errors.tex`). The temperature, case and parameter breakdown of the errors is in [results/analysis/](results/analysis/) (`code/scripts/16_error_analysis.py` to `18_dataset_trends.py`).
 
-Part A explicitly allows increasing or decreasing the initial 10,000 samples. The submitted final dataset has **100,000 independently uniform samples per case**, partitioned into **70,000 / 15,000 / 15,000** training/validation/test rows using seed **20261024**. The four earlier 10k datasets are superseded. The four saved models and their original SPICE labels are unchanged by this submission cleanup.
+Part A explicitly allows increasing or decreasing the initial 10,000 samples. The submitted final dataset has **100,000 independently uniform samples per case** (no 10,000-row set is delivered), partitioned into **70,000 / 15,000 / 15,000** training/validation/test rows using seed **20261024**. The four earlier 10k datasets are superseded. The four saved models and their original SPICE labels are unchanged by this submission cleanup.
 
 The comparison families are random forest, extra trees, histogram gradient boosting and local quintic RBF. Selection uses independent single-FET boundary validation; gate and circuit reference currents are evaluation data. Part B uses recorded SPICE internal/output voltages as prescribed. Part C propagates Boolean inputs through 28 NAND2 cells (112 MOSFETs) and sums gate predictions at the same 200 corners.
 
@@ -46,10 +47,11 @@ For a compatible existing simulator, use `bash run.sh setup --ngspice /absolute/
 
 ```bash
 bash run.sh reproduce   # all numerical stages into code/reproduced/
-bash run.sh report      # compile reports/main.tex with pdfLaTeX, twice
+bash run.sh analysis    # regenerate results/analysis/ and reports/figures/analysis/ (no SPICE, no training)
+bash run.sh report      # compile reports/main.tex with pdfLaTeX, twice -> reports/ML_Leakage_Estimation_Report.pdf
 ```
 
-The report command needs a working pdfLaTeX installation with the standard LaTeX, recommended, extra and pictures packages plus Latin Modern fonts (or use Overleaf). Upload the contents of `reports/`, including `main.tex`, `error_analysis.tex`, and its figure directories, to edit and compile the report in Overleaf. To regenerate only the numerical error explanation, run `python3 code/scripts/15_explain_worst_cases.py --ngspice /absolute/path/to/ngspice`; this writes regenerable logs under `logs/` and does not fit or change any model.
+The report command needs a working pdfLaTeX installation with the standard LaTeX, recommended, extra and pictures packages plus Latin Modern fonts (or use Overleaf). Upload the whole `reports/` folder (`main.tex`, `sections/`, `tables/`, `figures/`, `data_checks/plots/`) and compile `main.tex` with pdfLaTeX in Overleaf. To regenerate only the numerical error explanation, run `python3 code/scripts/15_explain_worst_cases.py --ngspice /absolute/path/to/ngspice`; this writes regenerable logs under `logs/` and does not fit or change any model.
 
 Full numerical reproduction runs 400,000 transistor and 54,800 gate/circuit operating points, plus supplemental validation and trend checks. It regenerates sampling inputs, fixed splits, candidate-validation outputs, chosen models, comparisons, plots and a numerical PDF report. The submitted model/result files are preserved. LaTeX editing and compilation are separate from fitting or evaluation.
 

@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\small
+\caption{Test-circuit results over all 256 input vectors at 200 corners. The last two rows are diagnostics that split the error (Section~\ref{sec:err}); the reference is the first-named quantity.}
+\label{tab:circ}
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{%
+\begin{tabular}{p{4.6cm}rrrrrr}
+\toprule
+Comparison & Reference median (nA) & Predicted median (nA) & Bias (nA) & Median err. (\%) & p95 err. (\%) & Mean acc. (\%) \\
+\midrule
+Gates, all 18 cases (3,600 rows) & 138.0 & 138.1 & -0.282 & 0.256 & 1.116 & 99.64 \\
+Parity checker, ML vs full SPICE (51,200 rows) & 3616.1 & 3601.1 & -13.461 & 0.423 & 1.214 & 99.49 \\
+Standalone SPICE gate sum vs full SPICE & 3616.1 & 3599.3 & -19.152 & 0.226 & 1.131 & 99.64 \\
+ML vs standalone SPICE gate sum & 3599.3 & 3601.1 & +5.691 & 0.222 & 0.719 & 99.73 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

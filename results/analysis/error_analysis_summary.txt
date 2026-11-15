@@ -1,0 +1,170 @@
+
+=== gate: n=3600  median|err| 0.256%  p95 1.116%  mean signed -0.013%  max 4.233%
+level  parameter  spearman_abs_err  spearman_signed_err
+ gate        vdd             0.197               -0.048
+ gate     n_vth0            -0.110                0.042
+ gate p_vth0_abs            -0.090               -0.062
+ gate     p_ndep            -0.066               -0.120
+ gate       temp             0.055               -0.401
+ gate     n_ndep            -0.034               -0.065
+ gate       n_u0            -0.034               -0.014
+ gate     n_toxe             0.033               -0.074
+ gate       p_xj             0.022               -0.048
+ gate     p_toxe             0.016               -0.093
+ gate       n_xj            -0.006               -0.010
+ gate       p_u0            -0.003                0.012
+          tband    n  median_abs  p95_abs  mean_signed level
+   (-40.0, 0.0] 1026       0.236    0.840        0.197  gate
+    (0.0, 25.0]  450       0.304    1.321        0.163  gate
+   (25.0, 50.0]  594       0.214    0.805       -0.009  gate
+   (50.0, 75.0]  558       0.256    1.141       -0.139  gate
+  (75.0, 100.0]  540       0.276    1.214       -0.168  gate
+(100.0, 125.01]  432       0.312    1.677       -0.345  gate
+
+=== circuit: n=51200  median|err| 0.423%  p95 1.214%  mean signed -0.165%  max 3.102%
+  level  parameter  spearman_abs_err  spearman_signed_err
+circuit       temp             0.390               -0.745
+circuit     n_vth0            -0.221                0.230
+circuit        vdd             0.169               -0.045
+circuit     p_ndep            -0.119               -0.116
+circuit       p_xj             0.088               -0.139
+circuit     n_toxe             0.080               -0.103
+circuit       n_xj             0.067               -0.054
+circuit p_vth0_abs            -0.065               -0.022
+circuit     n_ndep            -0.046               -0.065
+circuit       p_u0             0.031                0.043
+circuit     p_toxe             0.017               -0.260
+circuit       n_u0             0.005                0.004
+          tband     n  median_abs  p95_abs  mean_signed   level
+   (-40.0, 0.0] 14592       0.350    0.895        0.316 circuit
+    (0.0, 25.0]  6400       0.322    1.242        0.229 circuit
+   (25.0, 50.0]  8448       0.259    0.716       -0.042 circuit
+   (50.0, 75.0]  7936       0.505    0.865       -0.418 circuit
+  (75.0, 100.0]  7680       0.610    1.098       -0.607 circuit
+(100.0, 125.01]  6144       0.992    1.719       -1.007 circuit
+
+=== per gate/input-pattern (sorted by median |err|)
+circuit input_bits   n  median_abs  p95_abs  mean_signed  max_abs  corr_signed_vs_temp
+    OR2         00 200       0.709    2.122       -0.764    4.233               -0.848
+   AND2         11 200       0.439    1.312       -0.205    2.544               -0.665
+   AND2         01 200       0.334    0.939       -0.202    1.690               -0.695
+   AND2         10 200       0.325    0.917       -0.201    1.867               -0.638
+  NAND2         11 200       0.320    1.570        0.171    2.139               -0.218
+    INV          1 200       0.315    1.531        0.169    2.141               -0.206
+    INV          0 200       0.313    1.143        0.043    3.116               -0.360
+   NOR2         00 200       0.307    1.176        0.036    3.106               -0.356
+    OR2         10 200       0.260    0.880       -0.074    1.471               -0.623
+  NAND2         01 200       0.257    0.793        0.074    1.394               -0.402
+    OR2         01 200       0.245    0.762        0.006    1.924               -0.559
+    OR2         11 200       0.215    0.736        0.025    1.058               -0.526
+  NAND2         00 200       0.206    0.550        0.184    0.971               -0.190
+   NOR2         01 200       0.199    1.023        0.179    1.761               -0.250
+   NOR2         11 200       0.197    0.702        0.150    1.992               -0.290
+  NAND2         10 200       0.180    0.646        0.082    0.983               -0.111
+   AND2         00 200       0.177    0.621        0.014    1.225               -0.533
+   NOR2         10 200       0.172    0.770        0.075    1.574               -0.288
+
+=== worst 10 gate rows
+circuit input_bits  corner_id     temp    vdd  n_vth0  err_pct
+    OR2         00         94 124.5044 0.9634  0.3213  -4.2330
+    OR2         00         77 108.5190 0.9815  0.3253  -3.3323
+    INV          0         16  12.8132 0.9759  0.3392   3.1164
+   NOR2         00         16  12.8132 0.9759  0.3392   3.1059
+    OR2         00         46 107.1129 0.9428  0.3310  -3.0947
+    OR2         00         88 119.7030 0.9401  0.3625  -2.8994
+   AND2         11         94 124.5044 0.9634  0.3213  -2.5437
+    OR2         00        123 117.5829 0.9338  0.3449  -2.3918
+    OR2         00         80 106.6595 0.9817  0.3831  -2.3666
+    OR2         00         84 110.0045 0.9389  0.3331  -2.2860
+worst-20 composition: {('AND2', '11'): 1, ('INV', '0'): 1, ('INV', '1'): 1, ('NAND2', '11'): 1, ('NOR2', '00'): 1, ('OR2', '00'): 15}
+
+=== worst 10 circuit rows
+input_bits  corner_id     temp    vdd  n_vth0  err_pct
+  01111111         94 124.5044 0.9634  0.3213  -3.1017
+  11011111         94 124.5044 0.9634  0.3213  -3.0725
+  11110111         94 124.5044 0.9634  0.3213  -3.0601
+  10111111         94 124.5044 0.9634  0.3213  -3.0472
+  11111101         94 124.5044 0.9634  0.3213  -3.0326
+  01110111         94 124.5044 0.9634  0.3213  -3.0282
+  11101111         94 124.5044 0.9634  0.3213  -3.0163
+  11111011         94 124.5044 0.9634  0.3213  -3.0056
+  01111101         94 124.5044 0.9634  0.3213  -3.0008
+  11010111         94 124.5044 0.9634  0.3213  -3.0007
+
+=== OFF-model ignores Vg: spot-check g_pi OR2-00 corner 94: Vg offset 8.95 mV, T=124.5C -> n_eff=1.64 (Id ratio 1.172)
+circuit input_bits  median_max_off_vg_mV  mean_err_pct  median_abs_err_pct  mean_est_extra_pct  mean_err_corrected_pct  median_abs_err_corrected_pct
+   AND2         00                0.1899        0.0143              0.1768              0.1607                  0.1750                        0.2057
+   AND2         01                0.4171       -0.2022              0.3344              0.3457                  0.1435                        0.2700
+   AND2         10                0.3605       -0.2010              0.3251              0.3583                  0.1573                        0.2282
+   AND2         11                1.3472       -0.2045              0.4389              0.4120                  0.2075                        0.2850
+    INV          0                0.0000        0.0426              0.3129              0.0000                  0.0426                        0.3129
+    INV          1                0.0000        0.1689              0.3150              0.0000                  0.1689                        0.3150
+  NAND2         00                0.0000        0.1841              0.2057              0.0000                  0.1841                        0.2057
+  NAND2         01                0.0000        0.0740              0.2574             -0.0000                  0.0740                        0.2574
+  NAND2         10                0.0000        0.0816              0.1804              0.0000                  0.0816                        0.1804
+  NAND2         11                0.0000        0.1713              0.3205              0.0000                  0.1713                        0.3205
+   NOR2         00                0.0000        0.0364              0.3073              0.0000                  0.0364                        0.3073
+   NOR2         01                0.0000        0.1785              0.1987              0.0000                  0.1785                        0.1987
+   NOR2         10                0.0000        0.0747              0.1724             -0.0000                  0.0747                        0.1724
+   NOR2         11                0.0000        0.1499              0.1971              0.0000                  0.1499                        0.1971
+    OR2         00                1.3129       -0.7636              0.7093              0.8911                  0.1275                        0.3364
+    OR2         01                0.4079        0.0062              0.2450              0.1567                  0.1629                        0.2432
+    OR2         10                0.3451       -0.0742              0.2603              0.1812                  0.1070                        0.2338
+    OR2         11                0.1420        0.0253              0.2147              0.0745                  0.0998                        0.2197
+Spearman(max OFF-device |Vg-Vb|, signed gate error) over all 3600 rows = -0.329
+OR2 00: Pearson(signed err, max OFF Vg offset) = -0.666; corr(err, temp) = -0.818
+AND2 11: Pearson(signed err, max OFF Vg offset) = -0.348; corr(err, temp) = -0.640
+Worst row (OR2 00 corner 94): err -4.233%; est. extra OFF current from Vg offset 6.333e-08 A = 4.00% of SPICE leakage (SPICE check: 6.3e-8 A, 4.0%, ~95% of the error); corrected err -0.236%
+All gate rows: median|err| 0.256% -> 0.238% with first-order Vg correction; p95 1.116% -> 0.901%; max 4.233% -> 3.116%
+NOTE: first-order exp(dVg/(n*kT/q)) correction, n calibrated on one SPICE spot check; an estimate, not a SPICE result.
+
+=== ML power share by device case (all rows vs worst-100 rows)
+    case  mean_power_share_all_rows  mean_power_share_worst100_rows
+nmos_off                     0.1360                          0.2157
+ nmos_on                     0.1777                          0.1415
+pmos_off                     0.2473                          0.3788
+ pmos_on                     0.2961                          0.1396
+
+=== worst-20 gate rows: OFF device with largest Vg offset
+circuit input_bits  corner_id  err_pct top_vg_offset_device device_case  vg_offset_mV  device_power_share dominant_case  est_vg_extra_pct_of_leak
+    OR2         00         94   -4.233                 g_pi    pmos_off         8.955               0.241      nmos_off                     3.997
+    OR2         00         77   -3.332                 g_pi    pmos_off         6.021               0.299      nmos_off                     3.419
+    INV          0         16    3.116                  g_n    nmos_off         0.000               0.694      nmos_off                     0.000
+   NOR2         00         16    3.106                 g_na    nmos_off         0.000               0.347      nmos_off                     0.000
+    OR2         00         46   -3.095                 g_pi    pmos_off         6.274               0.176      nmos_off                     2.112
+    OR2         00         88   -2.899                 g_pi    pmos_off         2.729               0.401      pmos_off                     1.962
+   AND2         11         94   -2.544                 g_ni    nmos_off         6.101               0.217      pmos_off                     2.425
+    OR2         00        123   -2.392                 g_pi    pmos_off         3.727               0.308      nmos_off                     2.096
+    OR2         00         80   -2.367                 g_pi    pmos_off         1.710               0.436      pmos_off                     1.378
+    OR2         00         84   -2.286                 g_pi    pmos_off         3.372               0.297      nmos_off                     1.866
+    OR2         00        124   -2.250                 g_pi    pmos_off         3.497               0.282      nmos_off                     1.780
+    OR2         00         42   -2.159                 g_pi    pmos_off         2.889               0.345      nmos_off                     1.809
+    OR2         00         47   -2.154                 g_pi    pmos_off         4.197               0.211       pmos_on                     1.788
+    INV          1        131    2.141                  g_p    pmos_off         0.000               0.906      pmos_off                     0.000
+  NAND2         11        131    2.139                 g_pa    pmos_off         0.000               0.453      pmos_off                     0.000
+    OR2         00        181   -2.120                 g_pi    pmos_off         2.873               0.437      pmos_off                     2.292
+    OR2         00         73   -2.087                 g_pi    pmos_off         5.260               0.172      nmos_off                     1.743
+    OR2         00         70   -2.076                 g_pi    pmos_off         1.629               0.545      pmos_off                     1.597
+    OR2         00          5   -2.068                 g_pi    pmos_off         2.844               0.235      nmos_off                     1.359
+    OR2         00         59   -2.035                 g_pi    pmos_off         2.517               0.323      nmos_off                     1.455
+
+=== circuit error decomposition (mean signed %, by temperature band)
+          tband     n  mean_ml_vs_full_spice_pct  mean_standalone_sum_vs_full_spice_pct  mean_ml_vs_standalone_sum_pct
+   (-40.0, 0.0] 14592                      0.316                                  0.075                          0.241
+    (0.0, 25.0]  6400                      0.229                                 -0.018                          0.247
+   (25.0, 50.0]  8448                     -0.042                                 -0.158                          0.116
+   (50.0, 75.0]  7936                     -0.418                                 -0.439                          0.021
+  (75.0, 100.0]  7680                     -0.607                                 -0.649                          0.042
+(100.0, 125.01]  6144                     -1.007                                 -1.036                          0.028
+            all 51200                     -0.165                                 -0.297                          0.132
+Worst circuit row (vector 01111111, corner 94): ML vs full SPICE -3.102%, standalone sum vs full SPICE -2.837%, ML vs standalone sum -0.272%
+
+=== SPICE attribution of the five worst gate rows (results/error_analysis.json)
+gate input_bits  corner_id  temp_C  signed_error_percent dominant_case  dominant_contribution_pp  other_off_pp  on_pp
+ OR2         00         94 124.504                -4.233      pmos_off                    -4.004        -0.135 -0.094
+ OR2         00         77 108.519                -3.332      pmos_off                    -2.992        -0.233 -0.108
+ INV          0         16  12.813                 3.116      nmos_off                     3.046         0.000  0.070
+NOR2         00         16  12.813                 3.106      nmos_off                     3.036         0.000  0.070
+ OR2         00         46 107.113                -3.095      pmos_off                    -2.023        -1.080  0.008
+
+Gate MAPE: supply-only current 0.351% vs source power/VDD 0.365%

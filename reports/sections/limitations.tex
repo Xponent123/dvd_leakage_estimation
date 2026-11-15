@@ -1,0 +1,23 @@
+\section{Limitations and improvements}
+\label{sec:lim}
+
+\textbf{Limits of the approach.}
+\begin{itemize}
+\item \emph{OFF models trained only at $V_g=V_b$.} The assigned OFF datasets keep the gate on the rail, so the models cannot follow the few-millivolt gate offsets inside AND2 and OR2, which limits their accuracy (OR2 00 mean accuracy 99.14\%).
+\item \emph{Ideal inputs in the circuit.} Composition from standalone gates ignores non-ideal input levels and loading. This causes about $-1$\% bias at hot corners, as the assignment predicts.
+\item \emph{OFF-current tails.} OFF $I_d$ and $I_s$ have a 95th-percentile error of 2.6 to 2.9\%, and OFF $I_b$ is poorly predicted (about 26\%), although it does not affect gate totals.
+\item \emph{Gate sizes.} Width is fixed ($W_n=\SI{64}{\nano\meter}$, $W_p=\SI{128}{\nano\meter}$). The models take $W$ as an input and are trained over \SIrange{32}{256}{\nano\meter}, but gate and circuit accuracy has not been tested at other sizes.
+\item \emph{SPICE node voltages.} The gate method uses recorded SPICE internal voltages, as the assignment requires, so the estimate is not fully SPICE-free.
+\item \emph{Transfer and selection.} The RBF models use baselines from the model card and would need new ones for another technology. Model selection used an extra rail-biased transistor set (Section~\ref{sec:models}). All SPICE data and the worst-case checks come from ngspice 42 (installed by \texttt{bash run.sh setup}); other simulator versions were not tested in this repository.
+\item \emph{Compact model.} Results are for a compact-model simulation without layout parasitics or a calibrated foundry process distribution. The independent $\pm10$\% process draws are the assignment's statistical experiment.
+\end{itemize}
+
+\textbf{Improvements, in order of expected benefit.}
+\begin{enumerate}
+\item \emph{Train the OFF models on gate offsets.} Generate a small extra OFF dataset with $V_g$ perturbed by a few tens of millivolts around the rail, kept separate from the assigned datasets. The SPICE check in Section~\ref{sec:err} shows the model is accurate at the rail ($+0.05$\%) and that the offset alone explains most of the OR2 00 error, so this should remove most of the AND2 and OR2 bias.
+\item \emph{Model non-ideal inputs and loading.} Propagate predicted gate output voltages instead of ideal Boolean rails, or add a temperature-dependent output-offset model per gate. This targets the dominant hot-corner circuit error.
+\item \emph{Temperature-aware features and weighting.} Use $1/T$, voltages normalised by $kT/q$, and per-terminal error weighting to reduce the OFF-current tails and the residual cold and hot bias. Model OFF $I_b$ with a diode baseline or report it separately.
+\item \emph{Sample the width in gate and circuit corners} to test accuracy beyond the two fixed sizes.
+\item \emph{A node-voltage solver} built on the transistor models would make the gate prediction independent of SPICE.
+\item \emph{More data.} More rows help the RBF mainly near the rails but cost memory and inference time. Targeted near-rail samples (item 1) are cheaper than a larger uniform dataset.
+\end{enumerate}

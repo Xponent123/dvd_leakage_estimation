@@ -219,17 +219,23 @@ def verify():
         require(OPTIONS in text and len(re.findall(r'(?im)^M\S+\s',text))==count,f'Netlist devices/options: {name}')
         if name.startswith('transistors/'):
             require(all(re.search(rf'(?im)^V{t}\s+{t}\s+0\s',text) for t in 'dgsb'),f'Terminal voltage sources: {name}')
-    tex = (ROOT/'reports/main.tex').read_text()
-    for included in re.findall(r'\\input\{([^}]+)\}', tex):
-        require((ROOT/'reports'/included).is_file(),f'Missing LaTeX input: {included}')
-    for image in re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}',tex):
-        require((ROOT/'reports'/image).is_file(),f'Missing LaTeX figure: {image}')
-    pdf_text = subprocess.run(['pdftotext',str(ROOT/'reports/LUSR_8bit_Parity_Leakage_Report.pdf'),'-'],capture_output=True,text=True,check=True).stdout
-    require(len(pdf_text)>10000 and all(t in pdf_text for t in ('400,000','51,200','99.6350','99.4897')), 'Report counts/results')
+    report_dir = ROOT/'reports'
+    sources = [report_dir/'main.tex', *sorted((report_dir/'sections').glob('*.tex')), *sorted((report_dir/'tables').glob('*.tex'))]
+    require(sources[0].is_file() and len(sources) > 1, 'Missing LaTeX report sources')
+    for source in sources:
+        tex = source.read_text()
+        for included in re.findall(r'\\input\{([^}]+)\}', tex):
+            require((report_dir/included).is_file(),f'Missing LaTeX input: {included}')
+        for image in re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}',tex):
+            require((report_dir/image).is_file(),f'Missing LaTeX figure: {image}')
+    pdf = report_dir/'ML_Leakage_Estimation_Report.pdf'
+    require(pdf.is_file(), 'Missing compiled report PDF')
+    pdf_text = subprocess.run(['pdftotext',str(pdf),'-'],capture_output=True,text=True,check=True).stdout
+    require(len(pdf_text)>10000 and all(t in pdf_text for t in ('400,000','51,200','99.64','99.49','0.423')), 'Report counts/results')
     require(not re.search(r'\b(TODO|TBD|FIXME)\b|\[placeholder\]', pdf_text), 'Unfinished report')
-    require('Why the largest errors occur' in pdf_text and 'percentage points' in pdf_text, 'Missing required worst-error explanation')
-    result['hierarchy'] = 'PASS: per-transistor gate energy and all 256-vector gate sums'
+    require('Error analysis' in pdf_text and 'percentage points' in pdf_text, 'Missing required worst-error explanation')
     result['report'] = 'PASS: LaTeX sources, figures and compiled PDF'
+    result['hierarchy'] = 'PASS: per-transistor gate energy and all 256-vector gate sums'
     return result
 
 

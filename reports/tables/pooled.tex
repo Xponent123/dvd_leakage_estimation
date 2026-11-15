@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\small
+\caption{Test-set metrics of the chosen models, pooled over the four terminals. The last column is the accuracy of the dissipated power divided by VDD for a single FET.}
+\label{tab:pooled}
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Case & $R^2$ (linear) & Median (\%) & p95 (\%) & Mean acc. (\%) & Power/VDD mean acc. (\%) \\
+\midrule
+nmos\_on & 1.0000 & 0.0675 & 1.31 & 99.69 & 99.76 \\
+nmos\_off & 0.8274 & 0.00376 & 4.87 & 95.98 & 99.91 \\
+pmos\_on & 1.0000 & 0.037 & 1.08 & 99.72 & 99.83 \\
+pmos\_off & 0.9693 & 0.0137 & 4.77 & 83.42 & 99.87 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

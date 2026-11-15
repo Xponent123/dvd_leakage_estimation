@@ -1,0 +1,6 @@
+nmos_off |Id| vs temp: binned-median ratio last/first = 2.38
+nmos_off |Id| vs |vth0|: binned-median ratio last/first = 0.74
+pmos_off |Id| vs temp: binned-median ratio last/first = 2.06
+pmos_off |Id| vs |vth0|: binned-median ratio last/first = 0.764
+nmos_on |Ig| vs toxe: binned-median ratio last/first = 0.0857
+pmos_on |Ig| vs toxe: binned-median ratio last/first = 0.0919
