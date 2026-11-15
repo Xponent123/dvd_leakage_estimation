@@ -84,8 +84,8 @@ def corrected_artifacts(case,base_result,metadata,data_root,output,collect_only,
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--data-root',type=Path,default=ROOT/'improvements_99/data')
-    parser.add_argument('--output',type=Path,default=ROOT/'improvements_99/physics_selected')
+    parser.add_argument('--data-root',type=Path,default=ROOT/'reproduced/data')
+    parser.add_argument('--output',type=Path,default=ROOT/'reproduced/physics_selected')
     parser.add_argument('--collect-only',action='store_true')
     args=parser.parse_args()
     config_path=ROOT/'experiments/physics/selected_configs.json'

@@ -3,7 +3,7 @@
 **Team 8:** Dhimant Bhuva (2023102063), Jal Parikh (2023102066), Garima Mittal (2023102069), Krishna Goel (2023112009).  
 **Repository:** https://github.com/Xponent123/dvd_leakage_estimation
 
-Machine-learning leakage estimation for the 32nm_MGK technology (nominal VDD 0.9 V), evaluated hierarchically: four single-FET models (NMOS/PMOS, ON/OFF), five logic gates, and an 8-bit parity checker built from 28 NAND2 cells (112 MOSFETs). All reference data come from ngspice 42. The final dataset has 100,000 uniform samples per transistor case, split 70,000 / 15,000 / 15,000 (seed 20261024). Model families compared: random forest, extra trees, histogram gradient boosting, local quintic RBF.
+Machine-learning leakage estimation for the 32nm_MGK technology (nominal VDD 0.9 V), evaluated hierarchically: four single-FET models (NMOS/PMOS, ON/OFF), five logic gates, and an 8-bit parity checker built from 28 NAND2 cells (112 MOSFETs). All reference data come from ngspice 42. The final dataset has 100,000 uniform samples per transistor case, split 70,000 / 15,000 / 15,000 (seed 20261024). The datasets have 100,000 rows per case; an earlier 10,000-row run with MLP models reached 94.30% circuit accuracy (`results/analysis/baseline_10k_summary.json`), and the model was changed at the same time as the dataset size. Model families compared: random forest, extra trees, histogram gradient boosting, local quintic RBF.
 
 | Evaluation | Operating points | Median error | 95th-percentile error | Mean accuracy |
 |---|---:|---:|---:|---:|

@@ -21,7 +21,7 @@ from lusr.spice import sha256
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output-root', type=Path, default=ROOT/'improvements_99')
+    p.add_argument('--output-root', type=Path, default=ROOT/'reproduced')
     p.add_argument('--boundary', type=Path, default=ROOT/'experiments/physics/boundary_validation')
     p.add_argument('--cases', nargs='+', choices=CASES, default=list(CASES))
     p.add_argument('--families', nargs='+', default=['random_forest','extra_trees','hist_gradient_boosting'])

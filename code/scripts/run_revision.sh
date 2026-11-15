@@ -4,10 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 REVISION_ROOT="$(realpath -m "${1:-reproduced}")"
 if [[ "$REVISION_ROOT" != "$PWD/"* ]]; then
-    echo 'Choose a separate output directory inside lusr_parity (for example improvements_99_reproduced).' >&2
+    echo 'Choose a separate output directory inside code/ (for example reproduced).' >&2
     exit 2
 fi
-PYTHON="$PWD/.venv/bin/python"
+PYTHON="${PYTHON:-$PWD/.venv/bin/python}"
 export MPLCONFIGDIR="$PWD/.cache/matplotlib"
 mkdir -p "$REVISION_ROOT/logs"
 

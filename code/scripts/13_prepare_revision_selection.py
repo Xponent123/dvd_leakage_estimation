@@ -17,7 +17,7 @@ from lusr.spice import sha256
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output-root',type=Path,default=ROOT/'improvements_99')
+    p.add_argument('--output-root',type=Path,default=ROOT/'reproduced')
     args=p.parse_args();root=args.output_root.resolve()
     physics=root/'physics_selected/manifest.json'
     selected=json.loads(physics.read_text())

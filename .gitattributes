@@ -1,0 +1,12 @@
+# Keep exact bytes: source and data files are SHA-256 fingerprinted by the pipeline.
+*.py text eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.cir text eol=lf
+*.pm -text
+*.csv -text
+*.joblib binary
+*.png binary
+*.pdf binary

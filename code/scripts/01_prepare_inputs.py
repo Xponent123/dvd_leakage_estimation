@@ -2,8 +2,8 @@
 """Prepare sampled inputs and partitions. This script does not run SPICE.
 
 Run from any working directory, for example:
-    python project/lusr_parity/scripts/01_prepare_inputs.py
-    python project/lusr_parity/scripts/01_prepare_inputs.py --samples 20 --corners 3 --output /tmp/lusr-smoke
+    python code/scripts/01_prepare_inputs.py
+    python code/scripts/01_prepare_inputs.py --samples 20 --corners 3 --output /tmp/lusr-smoke
 
 All CSVs here contain input parameters only. The four required terminal-current
 datasets must be produced later from actual single-transistor SPICE simulations.
@@ -80,7 +80,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=PROJECT_ROOT / "data")
     parser.add_argument("--samples", type=positive_int, default=DEFAULT_SAMPLES, help="rows per transistor case (default: 10000)")
     parser.add_argument("--corners", type=positive_int, default=DEFAULT_CORNERS, help="common evaluation corners (default: 200)")
-    parser.add_argument("--seed", type=nonnegative_int, default=DEFAULT_SEED, help="explicit master seed (default: 20261022)")
+    parser.add_argument("--seed", type=nonnegative_int, default=20261024, help="explicit master seed (default: 20261024, the seed used for the submitted data)")
     args = parser.parse_args()
     model = read_model_card(args.model)
     output = args.output.expanduser().resolve()

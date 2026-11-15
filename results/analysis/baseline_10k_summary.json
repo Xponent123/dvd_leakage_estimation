@@ -1,0 +1,37 @@
+{
+  "description": "Earlier run of the same pipeline with 10,000 rows per case, superseded by the 100,000-row run",
+  "rows_per_case": 10000,
+  "train_rows_per_case": 7000,
+  "model_families_compared": [
+    "random_forest",
+    "extra_trees",
+    "hist_gradient_boosting",
+    "mlp"
+  ],
+  "selected_model": "MLP",
+  "gate": {
+    "median_error_pct": 3.6967448326334784,
+    "p95_error_pct": 13.678244500379169,
+    "mean_accuracy_pct": 95.0382427284397
+  },
+  "circuit": {
+    "median_error_pct": 4.807197464601284,
+    "p95_error_pct": 14.019682252519575,
+    "mean_accuracy_pct": 94.29653767605025
+  },
+  "transistor_test_median_error_pct": {
+    "nmos_on": 1.2144803364380585,
+    "nmos_off": 3.9251901361768406,
+    "pmos_on": 1.2146215296376872,
+    "pmos_off": 2.293886894557785
+  },
+  "spice_time_s_10k": 25.130065188001026,
+  "spice_time_s_100k": 706.7945640300022,
+  "sources": [
+    "lusr_parity/results/hierarchy_summary.json",
+    "lusr_parity/results/transistor_test_metrics.csv",
+    "lusr_parity/results/transistor_validation_models.csv",
+    "lusr_parity/data/transistors/simulation_metadata.json",
+    "Jal_github/data/transistors/simulation_metadata.json (spice_time_s_100k only)"
+  ]
+}
